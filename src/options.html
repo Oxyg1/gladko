@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Gladko</title>
+<link rel="icon" href="icons/icon-32.png">
+<link rel="stylesheet" href="options.css">
+<h2><img src="icons/logo.svg" alt=""><span data-i18n="optTitle"></span></h2>
+
+<label class="inline"><input type="checkbox" id="enabled"> <span data-i18n="optEnabled"></span></label>
+
+<label for="server" data-i18n="optServer"></label>
+<select id="server">
+  <option value="auto" data-i18n="optServerAuto"></option>
+  <option value="local" data-i18n="optServerLocal"></option>
+  <option value="public" data-i18n="optServerPublic"></option>
+  <option value="premium" data-i18n="optServerPremium"></option>
+  <option value="custom" data-i18n="optServerCustom"></option>
+</select>
+<small data-i18n="optServerHint"></small>
+<div id="probe"></div>
+
+<div id="custom-row" hidden>
+  <label for="endpoint" data-i18n="optEndpoint"></label>
+  <input id="endpoint" placeholder="http://localhost:8082/v2/check">
+  <small data-i18n="optEndpointHint"></small>
+  <button id="allow" type="button" data-i18n="optAllow"></button>
+</div>
+<div id="premium-row" hidden>
+  <label for="username" data-i18n="optUsername"></label>
+  <input id="username" type="email" autocomplete="off">
+  <label for="apiKey" data-i18n="optApiKey"></label>
+  <input id="apiKey" type="password" autocomplete="off">
+</div>
+
+<label for="language" data-i18n="optLanguage"></label>
+<select id="language">
+  <option value="auto" data-i18n="optLangAuto"></option>
+  <option value="ru-RU">Русский</option>
+  <option value="en-US">English (US)</option>
+  <option value="en-GB">English (UK)</option>
+  <option value="uk-UA">Українська</option>
+  <option value="de-DE">Deutsch</option>
+  <option value="fr">Français</option>
+  <option value="es">Español</option>
+  <option value="pt-PT">Português</option>
+  <option value="it">Italiano</option>
+  <option value="pl-PL">Polski</option>
+</select>
+<label class="inline"><input type="checkbox" id="picky"> <span data-i18n="optPicky"></span></label>
+
+<h3 data-i18n="optPause"></h3>
+<div id="pause-state"></div>
+<button id="pause" type="button"></button>
+
+<h3 data-i18n="optMuted"></h3>
+<ul id="muted"></ul>
+
+<h3 data-i18n="optDictionary"></h3>
+<ul id="dict"></ul>
+<button id="export" type="button" data-i18n="optExport"></button>
+<button id="import" type="button" data-i18n="optImport"></button>
+<input id="file" type="file" accept=".txt,.json,text/plain,application/json" hidden>
+
+<h3 data-i18n="optShortcuts"></h3>
+<small>Alt+Shift+F — <span data-i18n="cmdFixAll"></span><br>
+Alt+Shift+N — <span data-i18n="cmdNextIssue"></span><br>
+Alt+Shift+P — <span data-i18n="cmdTogglePause"></span></small><br>
+<small data-i18n="optShortcutsHint"></small>
+
+<p><small data-i18n="optPrivacy"></small></p>
+<p id="st" role="status"></p>
+<script src="polyfill.js"></script>
+<script src="options.js"></script>

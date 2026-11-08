@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "short_name": "__MSG_extShortName__",
+  "description": "__MSG_extDescription__",
+  "default_locale": "ru",
+  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "minimum_chrome_version": "110",
+  "permissions": ["storage", "contextMenus"],
+  "host_permissions": [
+    "https://api.languagetool.org/*",
+    "https://api.languagetoolplus.com/*",
+    "http://localhost:8081/*",
+    "http://127.0.0.1:8081/*"
+  ],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["polyfill.js", "content.js"],
+      "css": ["content.css"],
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "action": { "default_title": "__MSG_actionTitle__", "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" } },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "commands": {
+    "fix-all": { "suggested_key": { "default": "Alt+Shift+F" }, "description": "__MSG_cmdFixAll__" },
+    "next-issue": { "suggested_key": { "default": "Alt+Shift+N" }, "description": "__MSG_cmdNextIssue__" },
+    "toggle-pause": { "suggested_key": { "default": "Alt+Shift+P" }, "description": "__MSG_cmdTogglePause__" }
+  }
+}

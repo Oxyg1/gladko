@@ -1,0 +1,243 @@
+{
+  "extName": {
+    "message": "Gladko — Grammar Checker"
+  },
+  "extShortName": {
+    "message": "Gladko"
+  },
+  "extDescription": {
+    "message": "Free spelling and grammar check in text fields, powered by open-source LanguageTool."
+  },
+  "actionTitle": {
+    "message": "Gladko — settings"
+  },
+  "cmdFixAll": {
+    "message": "Fix all issues in the current field"
+  },
+  "cmdNextIssue": {
+    "message": "Go to the next issue"
+  },
+  "cmdTogglePause": {
+    "message": "Pause for an hour / resume"
+  },
+  "menuCheckSelection": {
+    "message": "Check selected text with Gladko"
+  },
+  "kindSpell": {
+    "message": "Spelling"
+  },
+  "kindStyle": {
+    "message": "Style"
+  },
+  "kindPunct": {
+    "message": "Punctuation"
+  },
+  "kindGrammar": {
+    "message": "Grammar"
+  },
+  "badgeFound": {
+    "message": "Issues found: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "badgeNone": {
+    "message": "No issues found"
+  },
+  "panelCount": {
+    "message": "issues: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEmpty": {
+    "message": "No issues found — looks smooth ✓"
+  },
+  "remove": {
+    "message": "Delete"
+  },
+  "removeLower": {
+    "message": "delete"
+  },
+  "skip": {
+    "message": "Ignore"
+  },
+  "addToDictionary": {
+    "message": "Add to dictionary"
+  },
+  "noSuggestions": {
+    "message": "No suggestions"
+  },
+  "fixAll": {
+    "message": "Fix all"
+  },
+  "pauseHour": {
+    "message": "Pause for 1 hour"
+  },
+  "muteSite": {
+    "message": "Disable here"
+  },
+  "errNoResponse": {
+    "message": "No response from the extension"
+  },
+  "errRate": {
+    "message": "Too many checks in a row — wait $SECONDS$ s",
+    "placeholders": {
+      "seconds": {
+        "content": "$1"
+      }
+    }
+  },
+  "errTooLong": {
+    "message": "The text is too long for the server"
+  },
+  "errHttp": {
+    "message": "The server returned error $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Cannot reach the check server ($URL$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "errNoPerm": {
+    "message": "No access to the server. Open settings and click “Allow access” ($ORIGIN$)",
+    "placeholders": {
+      "origin": {
+        "content": "$1"
+      }
+    }
+  },
+  "optTitle": {
+    "message": "Gladko — settings"
+  },
+  "optEnabled": {
+    "message": "Enabled"
+  },
+  "optServer": {
+    "message": "Check server"
+  },
+  "optServerAuto": {
+    "message": "Automatic: your local server if running, otherwise the public one"
+  },
+  "optServerLocal": {
+    "message": "Local only (localhost:8081)"
+  },
+  "optServerPublic": {
+    "message": "Public only (api.languagetool.org)"
+  },
+  "optServerPremium": {
+    "message": "LanguageTool Premium (api.languagetoolplus.com)"
+  },
+  "optServerCustom": {
+    "message": "Other address…"
+  },
+  "optServerHint": {
+    "message": "A local server has no limits and the text never leaves your computer. The public one is rate-limited and the text is sent to LanguageTool's server."
+  },
+  "optLocalOn": {
+    "message": "● Local server is running"
+  },
+  "optLocalOff": {
+    "message": "○ Local server is not responding"
+  },
+  "optEndpoint": {
+    "message": "LanguageTool server address"
+  },
+  "optEndpointHint": {
+    "message": "A server on another machine must be started with --public --allow-origin \"*\"."
+  },
+  "optAllow": {
+    "message": "Allow access to this address"
+  },
+  "optAllowed": {
+    "message": "Access granted"
+  },
+  "optDenied": {
+    "message": "Access was not granted"
+  },
+  "optBadUrl": {
+    "message": "Invalid address"
+  },
+  "optUsername": {
+    "message": "Premium account e-mail"
+  },
+  "optApiKey": {
+    "message": "Premium API key"
+  },
+  "optLanguage": {
+    "message": "Language"
+  },
+  "optLangAuto": {
+    "message": "Detect automatically"
+  },
+  "optPicky": {
+    "message": "Picky mode (more style suggestions)"
+  },
+  "optSaved": {
+    "message": "Saved"
+  },
+  "optPause": {
+    "message": "Pause"
+  },
+  "optPausedUntil": {
+    "message": "Checking is paused until $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "optResume": {
+    "message": "Resume"
+  },
+  "optPauseHour": {
+    "message": "Pause for 1 hour"
+  },
+  "optMuted": {
+    "message": "Sites where checking is disabled"
+  },
+  "optMutedNone": {
+    "message": "None"
+  },
+  "optDictionary": {
+    "message": "Personal dictionary"
+  },
+  "optDictNone": {
+    "message": "The dictionary is empty"
+  },
+  "optExport": {
+    "message": "Export"
+  },
+  "optImport": {
+    "message": "Import"
+  },
+  "optImported": {
+    "message": "Words added: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optShortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "optShortcutsHint": {
+    "message": "Change them in about:addons → gear → “Manage Extension Shortcuts” (Firefox) or chrome://extensions/shortcuts (Chrome)."
+  },
+  "optPrivacy": {
+    "message": "The text of the field is sent to the check server you chose. We collect and store nothing."
+  }
+}

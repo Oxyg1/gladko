@@ -1,0 +1,11 @@
+body{font:14px system-ui,sans-serif;max-width:600px;margin:24px auto;padding:0 16px;color:#1c2a2d;background:#fff}
+@media (prefers-color-scheme:dark){body{background:#182224;color:#e6eeef}input,select,button{background:#24393c;color:#e6eeef;border:1px solid #2f4c50}small{color:#a9b7ba}}
+label{display:block;margin:14px 0 4px;font-weight:600}label.inline{font-weight:500}
+input:not([type=checkbox]),select{width:100%;padding:6px;box-sizing:border-box}
+button{padding:6px 12px;margin:6px 6px 0 0;cursor:pointer}
+small{color:#666}h2{display:flex;align-items:center;gap:12px}h2 img{width:40px;height:40px}h3{margin:24px 0 6px}
+input[type=checkbox]{accent-color:#126067}[hidden]{display:none!important}
+#probe{margin-top:6px}.on{color:#126067;font-weight:600}.off{color:#a14c00}
+ul{padding:0;margin:0;list-style:none}li{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #8883}
+li button{margin:0;padding:1px 8px}
+#st{min-height:1.4em;color:#126067}

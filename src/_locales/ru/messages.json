@@ -1,0 +1,243 @@
+{
+  "extName": {
+    "message": "Гладко — проверка грамматики"
+  },
+  "extShortName": {
+    "message": "Гладко"
+  },
+  "extDescription": {
+    "message": "Бесплатная проверка орфографии и грамматики в полях ввода на базе открытого LanguageTool."
+  },
+  "actionTitle": {
+    "message": "Гладко — настройки"
+  },
+  "cmdFixAll": {
+    "message": "Исправить все замечания в текущем поле"
+  },
+  "cmdNextIssue": {
+    "message": "Перейти к следующему замечанию"
+  },
+  "cmdTogglePause": {
+    "message": "Пауза на час / продолжить"
+  },
+  "menuCheckSelection": {
+    "message": "Проверить выделенный текст в Гладко"
+  },
+  "kindSpell": {
+    "message": "Орфография"
+  },
+  "kindStyle": {
+    "message": "Стиль"
+  },
+  "kindPunct": {
+    "message": "Пунктуация"
+  },
+  "kindGrammar": {
+    "message": "Грамматика"
+  },
+  "badgeFound": {
+    "message": "Найдено замечаний: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "badgeNone": {
+    "message": "Ошибок не найдено"
+  },
+  "panelCount": {
+    "message": "замечаний: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "panelEmpty": {
+    "message": "Ошибок не найдено — текст гладкий ✓"
+  },
+  "remove": {
+    "message": "Удалить"
+  },
+  "removeLower": {
+    "message": "удалить"
+  },
+  "skip": {
+    "message": "Пропустить"
+  },
+  "addToDictionary": {
+    "message": "Добавить в словарь"
+  },
+  "noSuggestions": {
+    "message": "Вариантов исправления нет"
+  },
+  "fixAll": {
+    "message": "Исправить всё"
+  },
+  "pauseHour": {
+    "message": "Пауза на час"
+  },
+  "muteSite": {
+    "message": "Отключить здесь"
+  },
+  "errNoResponse": {
+    "message": "Нет ответа от расширения"
+  },
+  "errRate": {
+    "message": "Слишком много проверок подряд — подождите $SECONDS$ с",
+    "placeholders": {
+      "seconds": {
+        "content": "$1"
+      }
+    }
+  },
+  "errTooLong": {
+    "message": "Текст слишком длинный для сервера"
+  },
+  "errHttp": {
+    "message": "Сервер ответил ошибкой $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Нет связи с сервером проверки ($URL$)",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      }
+    }
+  },
+  "errNoPerm": {
+    "message": "Нет доступа к серверу. Откройте настройки и нажмите «Разрешить доступ» ($ORIGIN$)",
+    "placeholders": {
+      "origin": {
+        "content": "$1"
+      }
+    }
+  },
+  "optTitle": {
+    "message": "Гладко — настройки"
+  },
+  "optEnabled": {
+    "message": "Включено"
+  },
+  "optServer": {
+    "message": "Сервер проверки"
+  },
+  "optServerAuto": {
+    "message": "Автоматически: свой локальный, если запущен, иначе публичный"
+  },
+  "optServerLocal": {
+    "message": "Только свой локальный (localhost:8081)"
+  },
+  "optServerPublic": {
+    "message": "Только публичный api.languagetool.org"
+  },
+  "optServerPremium": {
+    "message": "LanguageTool Premium (api.languagetoolplus.com)"
+  },
+  "optServerCustom": {
+    "message": "Другой адрес…"
+  },
+  "optServerHint": {
+    "message": "Локальный сервер — без лимитов, текст не уходит из компьютера. Публичный — с лимитами, текст отправляется на сервер LanguageTool."
+  },
+  "optLocalOn": {
+    "message": "● Локальный сервер запущен"
+  },
+  "optLocalOff": {
+    "message": "○ Локальный сервер сейчас не отвечает"
+  },
+  "optEndpoint": {
+    "message": "Адрес сервера LanguageTool"
+  },
+  "optEndpointHint": {
+    "message": "Сервер на другом компьютере нужно запускать с ключами --public --allow-origin \"*\"."
+  },
+  "optAllow": {
+    "message": "Разрешить доступ к этому адресу"
+  },
+  "optAllowed": {
+    "message": "Доступ разрешён"
+  },
+  "optDenied": {
+    "message": "Доступ не разрешён"
+  },
+  "optBadUrl": {
+    "message": "Некорректный адрес"
+  },
+  "optUsername": {
+    "message": "E-mail аккаунта Premium"
+  },
+  "optApiKey": {
+    "message": "API-ключ Premium"
+  },
+  "optLanguage": {
+    "message": "Язык"
+  },
+  "optLangAuto": {
+    "message": "Определять автоматически"
+  },
+  "optPicky": {
+    "message": "Строгий режим (больше замечаний по стилю)"
+  },
+  "optSaved": {
+    "message": "Сохранено"
+  },
+  "optPause": {
+    "message": "Пауза"
+  },
+  "optPausedUntil": {
+    "message": "Проверка приостановлена до $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "optResume": {
+    "message": "Продолжить"
+  },
+  "optPauseHour": {
+    "message": "Пауза на час"
+  },
+  "optMuted": {
+    "message": "Сайты, где проверка отключена"
+  },
+  "optMutedNone": {
+    "message": "Нет таких сайтов"
+  },
+  "optDictionary": {
+    "message": "Личный словарь"
+  },
+  "optDictNone": {
+    "message": "Словарь пуст"
+  },
+  "optExport": {
+    "message": "Экспорт"
+  },
+  "optImport": {
+    "message": "Импорт"
+  },
+  "optImported": {
+    "message": "Добавлено слов: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "optShortcuts": {
+    "message": "Горячие клавиши"
+  },
+  "optShortcutsHint": {
+    "message": "Изменить сочетания можно в about:addons → шестерёнка → «Управление горячими клавишами» (Firefox) или chrome://extensions/shortcuts (Chrome)."
+  },
+  "optPrivacy": {
+    "message": "Текст из поля отправляется на выбранный сервер проверки. Мы ничего не собираем и не храним."
+  }
+}
