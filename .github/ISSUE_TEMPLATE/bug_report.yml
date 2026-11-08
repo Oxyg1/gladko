@@ -1,0 +1,31 @@
+name: Сообщить об ошибке
+description: Что-то работает не так
+labels: [bug]
+body:
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Браузер
+      options: [Firefox, Chrome, Edge, Brave, Другой]
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes:
+      label: Версия расширения и браузера
+      placeholder: "Гладко 0.6.0, Firefox 140"
+  - type: dropdown
+    id: server
+    attributes:
+      label: Сервер проверки
+      options: [Автоматически, Локальный, Публичный, Premium, Свой адрес]
+  - type: textarea
+    id: what
+    attributes:
+      label: Что случилось
+      description: Что ожидали и что получили. Адрес страницы и скриншот очень помогут.
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как повторить
+      placeholder: "1. Открыть …\n2. Набрать …"

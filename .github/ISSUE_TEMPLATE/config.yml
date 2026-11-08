@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Вопрос про LanguageTool (правила, ложные срабатывания)
+    url: https://forum.languagetool.org
+    about: Ошибки самих правил проверки исправляют в LanguageTool

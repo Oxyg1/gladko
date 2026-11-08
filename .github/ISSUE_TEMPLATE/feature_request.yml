@@ -1,0 +1,13 @@
+name: Предложить идею
+description: Что бы вы хотели видеть в Гладко
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Что предлагаете
+    validations: { required: true }
+  - type: textarea
+    id: why
+    attributes:
+      label: Зачем это нужно
