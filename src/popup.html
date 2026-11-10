@@ -1,0 +1,67 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Gladko</title>
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="popup.css">
+<body>
+<header class="top">
+  <img class="logo" src="icons/logo.svg" alt="">
+  <div class="brand"><b data-i18n="extShortName"></b><span id="version" class="muted small"></span></div>
+  <button id="open-settings" class="btn btn-ghost btn-icon" data-i18n-title="popSettings"><i data-icon="sliders"></i></button>
+</header>
+
+<section id="hero" class="hero">
+  <div class="hero-icon"><i data-icon="check"></i></div>
+  <div class="hero-text">
+    <b id="hero-title"></b>
+    <span id="hero-sub" class="muted small"></span>
+  </div>
+  <label class="switch"><input id="enabled" type="checkbox" data-i18n-title="popToggleAll"><span></span></label>
+</section>
+
+<section class="list">
+  <div class="row" id="site-row">
+    <i data-icon="globe"></i>
+    <div class="row-text"><b id="site-name"></b><span id="site-sub" class="muted small"></span></div>
+    <label class="switch"><input id="site" type="checkbox" data-i18n-title="popSiteToggle"><span></span></label>
+  </div>
+
+  <div class="row" id="pause-row">
+    <i data-icon="clock"></i>
+    <div class="row-text"><b data-i18n="popPause"></b><span id="pause-sub" class="muted small"></span></div>
+    <div class="seg" id="pause-seg">
+      <button data-pause="15m" data-i18n="pause15m"></button>
+      <button data-pause="1h" data-i18n="pause1h"></button>
+      <button data-pause="tomorrow" data-i18n="pauseTomorrow"></button>
+    </div>
+    <button id="resume" class="btn btn-sm btn-primary" hidden><i data-icon="play"></i><span data-i18n="optResume"></span></button>
+  </div>
+
+  <button class="row row-link" id="server-row">
+    <i data-icon="server"></i>
+    <div class="row-text"><b data-i18n="popServer"></b><span id="server-name" class="muted small"></span></div>
+    <span id="server-pill" class="pill"><span class="dot"></span><span id="server-state"></span></span>
+  </button>
+
+  <div class="row">
+    <i data-icon="lang"></i>
+    <div class="row-text"><b data-i18n="optLanguage"></b></div>
+    <select id="language" class="field field-sm"></select>
+  </div>
+</section>
+
+<section class="stats">
+  <div><b id="st-fixes">0</b><span class="muted small" data-i18n="statFixesToday"></span></div>
+  <div><b id="st-checks">0</b><span class="muted small" data-i18n="statChecksToday"></span></div>
+  <div><b id="st-total">0</b><span class="muted small" data-i18n="statFixesTotal"></span></div>
+</section>
+
+<footer class="foot">
+  <span class="muted small"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> <span data-i18n="popFixAllHint"></span></span>
+  <a href="#" id="all-settings"><span data-i18n="popAllSettings"></span> <i data-icon="arrow"></i></a>
+</footer>
+<script src="polyfill.js"></script>
+<script src="icons.js"></script>
+<script src="ui-common.js"></script>
+<script src="popup.js"></script>

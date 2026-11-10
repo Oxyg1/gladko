@@ -125,33 +125,6 @@
   "optEnabled": {
     "message": "Enabled"
   },
-  "optServer": {
-    "message": "Check server"
-  },
-  "optServerAuto": {
-    "message": "Automatic: your local server if running, otherwise the public one"
-  },
-  "optServerLocal": {
-    "message": "Local only (localhost:8081)"
-  },
-  "optServerPublic": {
-    "message": "Public only (api.languagetool.org)"
-  },
-  "optServerPremium": {
-    "message": "LanguageTool Premium (api.languagetoolplus.com)"
-  },
-  "optServerCustom": {
-    "message": "Other address…"
-  },
-  "optServerHint": {
-    "message": "A local server has no limits and the text never leaves your computer. The public one is rate-limited and the text is sent to LanguageTool's server."
-  },
-  "optLocalOn": {
-    "message": "● Local server is running"
-  },
-  "optLocalOff": {
-    "message": "○ Local server is not responding"
-  },
   "optEndpoint": {
     "message": "LanguageTool server address"
   },
@@ -182,14 +155,8 @@
   "optLangAuto": {
     "message": "Detect automatically"
   },
-  "optPicky": {
-    "message": "Picky mode (more style suggestions)"
-  },
   "optSaved": {
     "message": "Saved"
-  },
-  "optPause": {
-    "message": "Pause"
   },
   "optPausedUntil": {
     "message": "Checking is paused until $TIME$",
@@ -202,17 +169,8 @@
   "optResume": {
     "message": "Resume"
   },
-  "optPauseHour": {
-    "message": "Pause for 1 hour"
-  },
-  "optMuted": {
-    "message": "Sites where checking is disabled"
-  },
   "optMutedNone": {
     "message": "None"
-  },
-  "optDictionary": {
-    "message": "Personal dictionary"
   },
   "optDictNone": {
     "message": "The dictionary is empty"
@@ -231,13 +189,361 @@
       }
     }
   },
-  "optShortcuts": {
+  "optShortcutsHint": {
+    "message": "To change them: about:addons → gear → “Manage Extension Shortcuts”."
+  },
+  "popSettings": {
+    "message": "Settings"
+  },
+  "popToggleAll": {
+    "message": "Turn checking on or off"
+  },
+  "popSiteToggle": {
+    "message": "Check on this site"
+  },
+  "popPause": {
+    "message": "Pause"
+  },
+  "popPauseSub": {
+    "message": "Stop checking everywhere for a while"
+  },
+  "pause15m": {
+    "message": "15 min"
+  },
+  "pause1h": {
+    "message": "1 hour"
+  },
+  "pauseTomorrow": {
+    "message": "Until morning"
+  },
+  "popServer": {
+    "message": "Server"
+  },
+  "statFixesToday": {
+    "message": "fixed today"
+  },
+  "statChecksToday": {
+    "message": "checks today"
+  },
+  "statFixesTotal": {
+    "message": "fixed in total"
+  },
+  "popFixAllHint": {
+    "message": "fix all"
+  },
+  "popAllSettings": {
+    "message": "All settings"
+  },
+  "popOn": {
+    "message": "Checking is on"
+  },
+  "popOnSub": {
+    "message": "Underlining mistakes in text fields"
+  },
+  "popOff": {
+    "message": "Checking is off"
+  },
+  "popOffSub": {
+    "message": "Turn on to see mistakes again"
+  },
+  "popPausedTitle": {
+    "message": "Checking is paused"
+  },
+  "popOnElsewhere": {
+    "message": "Disabled on this site"
+  },
+  "popMutedSub": {
+    "message": "Still working on other sites"
+  },
+  "popSiteOn": {
+    "message": "Checking is on for this site"
+  },
+  "popSiteOff": {
+    "message": "Checking is off for this site"
+  },
+  "popSiteNA": {
+    "message": "This page"
+  },
+  "popSiteNASub": {
+    "message": "Not available here, or reload the page"
+  },
+  "srvLocal": {
+    "message": "Your local server"
+  },
+  "srvPublic": {
+    "message": "Public LanguageTool"
+  },
+  "srvPremium": {
+    "message": "LanguageTool Premium"
+  },
+  "srvCustom": {
+    "message": "Custom address"
+  },
+  "srvAutoLocal": {
+    "message": "Auto · local server"
+  },
+  "srvAutoPublic": {
+    "message": "Auto · public LanguageTool"
+  },
+  "stateOnline": {
+    "message": "online"
+  },
+  "stateOffline": {
+    "message": "offline"
+  },
+  "stateCloud": {
+    "message": "cloud"
+  },
+  "stateNoKey": {
+    "message": "no key"
+  },
+  "statePrivate": {
+    "message": "private"
+  },
+  "stateChecking": {
+    "message": "checking…"
+  },
+  "secGeneral": {
+    "message": "General"
+  },
+  "secGeneralSub": {
+    "message": "Main switch, pause and your stats."
+  },
+  "secServer": {
+    "message": "Check server"
+  },
+  "secServerSub": {
+    "message": "Where your text is sent for checking. You can change it any time."
+  },
+  "secChecking": {
+    "message": "Checking"
+  },
+  "secCheckingSub": {
+    "message": "Language and how strict the check is."
+  },
+  "secSites": {
+    "message": "Sites"
+  },
+  "secSitesSub": {
+    "message": "Gladko does not check anything on these sites. You can also add a site from the toolbar menu."
+  },
+  "secDictionary": {
+    "message": "Personal dictionary"
+  },
+  "secDictionarySub": {
+    "message": "Words that are never flagged: names, terms, slang."
+  },
+  "secShortcuts": {
     "message": "Keyboard shortcuts"
   },
-  "optShortcutsHint": {
-    "message": "Change them in about:addons → gear → “Manage Extension Shortcuts” (Firefox) or chrome://extensions/shortcuts (Chrome)."
+  "secShortcutsSub": {
+    "message": "Work while the cursor is in a text field."
   },
-  "optPrivacy": {
-    "message": "The text of the field is sent to the check server you chose. We collect and store nothing."
+  "secAbout": {
+    "message": "About"
+  },
+  "sideNote": {
+    "message": "No analytics or ads. Text goes only to the server you choose."
+  },
+  "optEnabledSub": {
+    "message": "Underline mistakes in all text fields"
+  },
+  "srvAutoTitle": {
+    "message": "Automatic"
+  },
+  "srvAutoDesc": {
+    "message": "Your local server if running, otherwise the public one."
+  },
+  "srvPublicDesc": {
+    "message": "api.languagetool.org — works out of the box."
+  },
+  "srvLocalDesc": {
+    "message": "localhost:8081 — text never leaves your computer, no limits."
+  },
+  "srvPremiumDesc": {
+    "message": "More rules and higher limits. Needs a LanguageTool account."
+  },
+  "srvCustomDesc": {
+    "message": "A LanguageTool server on your domain or network."
+  },
+  "badgeRecommended": {
+    "message": "Recommended"
+  },
+  "badgeLimits": {
+    "message": "Rate-limited"
+  },
+  "badgePrivate": {
+    "message": "Most private"
+  },
+  "badgeKey": {
+    "message": "Needs a key"
+  },
+  "badgeAdvanced": {
+    "message": "Advanced"
+  },
+  "showKey": {
+    "message": "Show key"
+  },
+  "premiumHint": {
+    "message": "The key is stored only in this browser and sent only to api.languagetoolplus.com."
+  },
+  "localTitle": {
+    "message": "Local server"
+  },
+  "localSub": {
+    "message": "localhost:8081"
+  },
+  "localRecheck": {
+    "message": "Check again"
+  },
+  "localHowTo": {
+    "message": "The easiest way to run it is a single Docker command:"
+  },
+  "copy": {
+    "message": "Copy"
+  },
+  "copied": {
+    "message": "Copied"
+  },
+  "optLanguageSub": {
+    "message": "Auto-detection handles mixed texts"
+  },
+  "optPickyTitle": {
+    "message": "Picky mode"
+  },
+  "optPickySub": {
+    "message": "More style and typography suggestions"
+  },
+  "sitePlaceholder": {
+    "message": "example.com"
+  },
+  "add": {
+    "message": "Add"
+  },
+  "enableHere": {
+    "message": "Enable"
+  },
+  "wordPlaceholder": {
+    "message": "New word"
+  },
+  "searchPlaceholder": {
+    "message": "Search the dictionary"
+  },
+  "dictCount": {
+    "message": "Words in dictionary: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "nothingFound": {
+    "message": "Nothing found"
+  },
+  "wordAdded": {
+    "message": "Word added"
+  },
+  "notSet": {
+    "message": "not set"
+  },
+  "editShortcuts": {
+    "message": "Change"
+  },
+  "shortcutsCanEdit": {
+    "message": "You can change them in the browser settings."
+  },
+  "aboutText": {
+    "message": "Free and open-source spelling and grammar checker."
+  },
+  "privacyPolicy": {
+    "message": "Privacy policy"
+  },
+  "reportBug": {
+    "message": "Report a bug"
+  },
+  "showWelcome": {
+    "message": "Show welcome page"
+  },
+  "ltCredit": {
+    "message": "Checking is powered by LanguageTool (LGPL). Gladko is an independent project."
+  },
+  "welInstalled": {
+    "message": "Installed"
+  },
+  "welTitle": {
+    "message": "Gladko is ready"
+  },
+  "welLead": {
+    "message": "Mistakes are now underlined in any text field: email, chats, forms and editors."
+  },
+  "welTryTitle": {
+    "message": "Try it right here"
+  },
+  "welTryHint": {
+    "message": "Click an underlined word"
+  },
+  "welDemoText": {
+    "message": "Hello! I am writting this message to see how Gladko works. Their are mistakes here on purpose."
+  },
+  "welStep1": {
+    "message": "Type as usual"
+  },
+  "welStep1Sub": {
+    "message": "Mistakes are underlined a second after you stop typing."
+  },
+  "welStep2": {
+    "message": "Fix in one click"
+  },
+  "welStep2Sub": {
+    "message": "Click a word for suggestions. The badge in the corner shows all issues."
+  },
+  "welStep3": {
+    "message": "Pin the icon"
+  },
+  "welStep3Sub": {
+    "message": "Click the puzzle icon in the toolbar and pin Gladko for quick settings."
+  },
+  "welWhereTitle": {
+    "message": "Where should text be checked?"
+  },
+  "welWhereSub": {
+    "message": "You can change this any time in settings."
+  },
+  "welPickCloud": {
+    "message": "LanguageTool cloud"
+  },
+  "welPickCloudSub": {
+    "message": "Works right away. If you start your own server, Gladko switches to it automatically."
+  },
+  "welPickLocal": {
+    "message": "Only my computer"
+  },
+  "welPickLocalSub": {
+    "message": "Needs a local LanguageTool server. Your text goes nowhere."
+  },
+  "welPrivacy": {
+    "message": "Gladko collects no data and shows no ads."
+  },
+  "welDone": {
+    "message": "Done"
+  },
+  "popPausedSub": {
+    "message": "Until $TIME$, then it resumes by itself",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "pausedShort": {
+    "message": "until $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "langAutoShort": {
+    "message": "Auto-detect"
   }
 }

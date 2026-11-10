@@ -100,9 +100,31 @@ try {
   // options page loads with localized strings
   const o = await ctx.newPage();
   await o.goto(`chrome-extension://${new URL(sw.url()).host}/options.html`);
-  const title = await o.textContent("h2");
+  const title = await o.textContent(".side-brand b");
   assert.ok(/Гладко|Gladko/.test(title), "options title: " + title);
-  console.log("ok: options page renders:", title.trim());
+  await o.click('input[name="server"][value="public"]', { force: true });
+  assert.equal(await sw.evaluate(async () => (await chrome.storage.local.get("server")).server), "public", "server choice saved");
+  await o.click('input[name="server"][value="auto"]', { force: true });
+  await o.fill("#word-input", "гладкость");
+  await o.press("#word-input", "Enter");
+  await o.waitForSelector(".chip >> text=гладкость");
+  console.log("ok: options page renders and saves:", title.trim());
+
+  // toolbar popup: main switch and stats
+  const pop = await ctx.newPage();
+  await pop.goto(`chrome-extension://${new URL(sw.url()).host}/popup.html`);
+  await pop.waitForSelector("#hero-title:not(:empty)");
+  await pop.click(".hero .switch");
+  assert.equal(await sw.evaluate(async () => (await chrome.storage.local.get("enabled")).enabled), false, "popup turns checking off");
+  assert.equal(await sw.evaluate(() => chrome.action.getBadgeText({})), "off", "toolbar badge shows off");
+  await pop.click(".hero .switch");
+  const fixes = Number(await pop.textContent("#st-fixes"));
+  assert.ok(fixes >= 2, "fixes counted in stats: " + fixes);
+  console.log("ok: popup toggles checking, badge and stats work (fixes today:", fixes + ")");
+
+  // welcome page opens on install
+  assert.ok(ctx.pages().some((pg) => pg.url().endsWith("/welcome.html")), "welcome page opened on install");
+  console.log("ok: welcome page opened on install");
 } catch (e) {
   failed = true;
   console.error("FAILED:", e.message);

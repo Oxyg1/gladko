@@ -4,37 +4,89 @@
   "short_name": "__MSG_extShortName__",
   "description": "__MSG_extDescription__",
   "default_locale": "ru",
-  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "96": "icons/icon-96.png", "128": "icons/icon-128.png" },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "{6758d27f-2875-4937-bdce-4d8c626d1d24}",
-      "data_collection_permissions": { "required": ["websiteContent"] }
+      "data_collection_permissions": {
+        "required": [
+          "websiteContent"
+        ]
+      }
     }
   },
   "permissions": [
     "storage",
     "contextMenus",
+    "alarms",
     "https://api.languagetool.org/*",
     "https://api.languagetoolplus.com/*",
     "http://localhost:8081/*",
     "http://127.0.0.1:8081/*"
   ],
-  "optional_permissions": ["http://*/*", "https://*/*"],
-  "background": { "scripts": ["polyfill.js", "lib.js", "background.js"] },
+  "optional_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "scripts": [
+      "polyfill.js",
+      "lib.js",
+      "background.js"
+    ]
+  },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["polyfill.js", "content.js"],
-      "css": ["content.css"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "polyfill.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
       "all_frames": true,
       "match_about_blank": true
     }
   ],
-  "browser_action": { "default_title": "__MSG_actionTitle__", "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" } },
-  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "browser_action": {
+    "default_title": "__MSG_actionTitle__",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "commands": {
-    "fix-all": { "suggested_key": { "default": "Alt+Shift+F" }, "description": "__MSG_cmdFixAll__" },
-    "next-issue": { "suggested_key": { "default": "Alt+Shift+N" }, "description": "__MSG_cmdNextIssue__" },
-    "toggle-pause": { "suggested_key": { "default": "Alt+Shift+P" }, "description": "__MSG_cmdTogglePause__" }
+    "fix-all": {
+      "suggested_key": {
+        "default": "Alt+Shift+F"
+      },
+      "description": "__MSG_cmdFixAll__"
+    },
+    "next-issue": {
+      "suggested_key": {
+        "default": "Alt+Shift+N"
+      },
+      "description": "__MSG_cmdNextIssue__"
+    },
+    "toggle-pause": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "__MSG_cmdTogglePause__"
+    }
   }
 }

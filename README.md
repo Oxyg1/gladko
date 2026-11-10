@@ -5,7 +5,7 @@
 **🇷🇺 Русский** · [🇬🇧 English](README.en.md)
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
-[![Версия](https://img.shields.io/badge/версия-0.6.0-126067)](CHANGELOG.md)
+[![Версия](https://img.shields.io/badge/версия-0.7.0-126067)](CHANGELOG.md)
 [![Лицензия: MIT](https://img.shields.io/badge/лицензия-MIT-126067)](LICENSE)
 ![Firefox MV2](https://img.shields.io/badge/Firefox-MV2-FF7139?logo=firefoxbrowser&logoColor=white)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
@@ -30,10 +30,23 @@
 | 🎯 **Под контролем** | пауза, отключение на выбранных сайтах, строгий режим, проверка выделенного текста из контекстного меню |
 | 📚 **Личный словарь** | импорт и экспорт в текстовый файл |
 | 🔒 **Приватность** | никакой аналитики и собственных серверов; локальный режим — текст остаётся на вашем компьютере |
-| 🌍 **Интерфейс** | русский и английский |
+| 🎛️ **Удобное меню** | быстрые настройки по клику на значок, индикатор паузы и выключения на кнопке, статистика исправлений |
+| 🌍 **Интерфейс** | русский и английский, светлая и тёмная тема |
+
+## 🎛️ Меню и настройки
+
+Клик по значку на панели открывает быстрое меню: главный выключатель, «проверять на этом сайте», пауза, сервер, язык и статистика за день. Полные настройки разложены по разделам, есть светлая и тёмная тема. После установки открывается страница приветствия с живым демо.
+
+<div align="center">
+<img src="docs/img/ui-popup.png" alt="Меню на панели" width="30%">&nbsp;
+<img src="docs/img/ui-popup-dark.png" alt="Меню на панели, тёмная тема" width="30%">
+<br><br>
+<img src="docs/img/ui-options.png" alt="Страница настроек" width="88%">
+</div>
 
 <details>
 <summary><b>Больше скриншотов</b></summary>
+<img src="docs/img/ui-welcome.png" alt="Страница приветствия" width="100%">
 <br>
 <img src="docs/img/ru-1-underlines.png" alt="Подчёркнутые ошибки" width="100%">
 <img src="docs/img/ru-3-panel.png" alt="Панель со всеми замечаниями" width="100%">

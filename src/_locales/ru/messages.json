@@ -125,33 +125,6 @@
   "optEnabled": {
     "message": "Включено"
   },
-  "optServer": {
-    "message": "Сервер проверки"
-  },
-  "optServerAuto": {
-    "message": "Автоматически: свой локальный, если запущен, иначе публичный"
-  },
-  "optServerLocal": {
-    "message": "Только свой локальный (localhost:8081)"
-  },
-  "optServerPublic": {
-    "message": "Только публичный api.languagetool.org"
-  },
-  "optServerPremium": {
-    "message": "LanguageTool Premium (api.languagetoolplus.com)"
-  },
-  "optServerCustom": {
-    "message": "Другой адрес…"
-  },
-  "optServerHint": {
-    "message": "Локальный сервер — без лимитов, текст не уходит из компьютера. Публичный — с лимитами, текст отправляется на сервер LanguageTool."
-  },
-  "optLocalOn": {
-    "message": "● Локальный сервер запущен"
-  },
-  "optLocalOff": {
-    "message": "○ Локальный сервер сейчас не отвечает"
-  },
   "optEndpoint": {
     "message": "Адрес сервера LanguageTool"
   },
@@ -182,14 +155,8 @@
   "optLangAuto": {
     "message": "Определять автоматически"
   },
-  "optPicky": {
-    "message": "Строгий режим (больше замечаний по стилю)"
-  },
   "optSaved": {
     "message": "Сохранено"
-  },
-  "optPause": {
-    "message": "Пауза"
   },
   "optPausedUntil": {
     "message": "Проверка приостановлена до $TIME$",
@@ -202,17 +169,8 @@
   "optResume": {
     "message": "Продолжить"
   },
-  "optPauseHour": {
-    "message": "Пауза на час"
-  },
-  "optMuted": {
-    "message": "Сайты, где проверка отключена"
-  },
   "optMutedNone": {
     "message": "Нет таких сайтов"
-  },
-  "optDictionary": {
-    "message": "Личный словарь"
   },
   "optDictNone": {
     "message": "Словарь пуст"
@@ -231,13 +189,361 @@
       }
     }
   },
-  "optShortcuts": {
+  "optShortcutsHint": {
+    "message": "Изменить сочетания: about:addons → шестерёнка → «Управление горячими клавишами»."
+  },
+  "popSettings": {
+    "message": "Настройки"
+  },
+  "popToggleAll": {
+    "message": "Включить или выключить проверку"
+  },
+  "popSiteToggle": {
+    "message": "Проверять на этом сайте"
+  },
+  "popPause": {
+    "message": "Пауза"
+  },
+  "popPauseSub": {
+    "message": "Временно не проверять нигде"
+  },
+  "pause15m": {
+    "message": "15 мин"
+  },
+  "pause1h": {
+    "message": "1 час"
+  },
+  "pauseTomorrow": {
+    "message": "До утра"
+  },
+  "popServer": {
+    "message": "Сервер"
+  },
+  "statFixesToday": {
+    "message": "исправлено сегодня"
+  },
+  "statChecksToday": {
+    "message": "проверок сегодня"
+  },
+  "statFixesTotal": {
+    "message": "исправлено всего"
+  },
+  "popFixAllHint": {
+    "message": "исправить всё"
+  },
+  "popAllSettings": {
+    "message": "Все настройки"
+  },
+  "popOn": {
+    "message": "Проверка включена"
+  },
+  "popOnSub": {
+    "message": "Подчёркиваем ошибки в полях ввода"
+  },
+  "popOff": {
+    "message": "Проверка выключена"
+  },
+  "popOffSub": {
+    "message": "Включите, чтобы снова видеть ошибки"
+  },
+  "popPausedTitle": {
+    "message": "Проверка на паузе"
+  },
+  "popOnElsewhere": {
+    "message": "Здесь проверка отключена"
+  },
+  "popMutedSub": {
+    "message": "На остальных сайтах всё работает"
+  },
+  "popSiteOn": {
+    "message": "Проверка на этом сайте включена"
+  },
+  "popSiteOff": {
+    "message": "На этом сайте проверка отключена"
+  },
+  "popSiteNA": {
+    "message": "Эта страница"
+  },
+  "popSiteNASub": {
+    "message": "Здесь проверка недоступна или нужно обновить страницу"
+  },
+  "srvLocal": {
+    "message": "Свой локальный сервер"
+  },
+  "srvPublic": {
+    "message": "Публичный LanguageTool"
+  },
+  "srvPremium": {
+    "message": "LanguageTool Premium"
+  },
+  "srvCustom": {
+    "message": "Свой адрес"
+  },
+  "srvAutoLocal": {
+    "message": "Авто · локальный сервер"
+  },
+  "srvAutoPublic": {
+    "message": "Авто · публичный LanguageTool"
+  },
+  "stateOnline": {
+    "message": "работает"
+  },
+  "stateOffline": {
+    "message": "не отвечает"
+  },
+  "stateCloud": {
+    "message": "облако"
+  },
+  "stateNoKey": {
+    "message": "нет ключа"
+  },
+  "statePrivate": {
+    "message": "приватно"
+  },
+  "stateChecking": {
+    "message": "проверяем…"
+  },
+  "secGeneral": {
+    "message": "Основное"
+  },
+  "secGeneralSub": {
+    "message": "Главный выключатель, пауза и ваша статистика."
+  },
+  "secServer": {
+    "message": "Сервер проверки"
+  },
+  "secServerSub": {
+    "message": "Куда отправляется текст для проверки. Можно поменять в любой момент."
+  },
+  "secChecking": {
+    "message": "Проверка"
+  },
+  "secCheckingSub": {
+    "message": "Язык и строгость проверки."
+  },
+  "secSites": {
+    "message": "Сайты"
+  },
+  "secSitesSub": {
+    "message": "На этих сайтах Гладко ничего не проверяет. Добавить сайт можно и из меню на панели."
+  },
+  "secDictionary": {
+    "message": "Личный словарь"
+  },
+  "secDictionarySub": {
+    "message": "Слова, которые не считаются ошибками: имена, термины, сленг."
+  },
+  "secShortcuts": {
     "message": "Горячие клавиши"
   },
-  "optShortcutsHint": {
-    "message": "Изменить сочетания можно в about:addons → шестерёнка → «Управление горячими клавишами» (Firefox) или chrome://extensions/shortcuts (Chrome)."
+  "secShortcutsSub": {
+    "message": "Работают, когда курсор стоит в поле ввода."
   },
-  "optPrivacy": {
-    "message": "Текст из поля отправляется на выбранный сервер проверки. Мы ничего не собираем и не храним."
+  "secAbout": {
+    "message": "О расширении"
+  },
+  "sideNote": {
+    "message": "Никакой аналитики и рекламы. Текст уходит только на выбранный вами сервер."
+  },
+  "optEnabledSub": {
+    "message": "Подчёркивать ошибки во всех полях ввода"
+  },
+  "srvAutoTitle": {
+    "message": "Автоматически"
+  },
+  "srvAutoDesc": {
+    "message": "Локальный сервер, если запущен, иначе публичный."
+  },
+  "srvPublicDesc": {
+    "message": "api.languagetool.org — работает сразу, без настройки."
+  },
+  "srvLocalDesc": {
+    "message": "localhost:8081 — текст не покидает компьютер, без лимитов."
+  },
+  "srvPremiumDesc": {
+    "message": "Больше правил и выше лимиты. Нужен аккаунт LanguageTool."
+  },
+  "srvCustomDesc": {
+    "message": "Сервер LanguageTool на вашем домене или в сети."
+  },
+  "badgeRecommended": {
+    "message": "Рекомендуем"
+  },
+  "badgeLimits": {
+    "message": "Есть лимиты"
+  },
+  "badgePrivate": {
+    "message": "Максимально приватно"
+  },
+  "badgeKey": {
+    "message": "Нужен ключ"
+  },
+  "badgeAdvanced": {
+    "message": "Для опытных"
+  },
+  "showKey": {
+    "message": "Показать ключ"
+  },
+  "premiumHint": {
+    "message": "Ключ хранится только в этом браузере и отправляется только на api.languagetoolplus.com."
+  },
+  "localTitle": {
+    "message": "Локальный сервер"
+  },
+  "localSub": {
+    "message": "localhost:8081"
+  },
+  "localRecheck": {
+    "message": "Проверить снова"
+  },
+  "localHowTo": {
+    "message": "Запустить его проще всего через Docker одной командой:"
+  },
+  "copy": {
+    "message": "Копировать"
+  },
+  "copied": {
+    "message": "Скопировано"
+  },
+  "optLanguageSub": {
+    "message": "Автоопределение работает для смешанных текстов"
+  },
+  "optPickyTitle": {
+    "message": "Строгий режим"
+  },
+  "optPickySub": {
+    "message": "Больше замечаний по стилю и типографике"
+  },
+  "sitePlaceholder": {
+    "message": "example.com"
+  },
+  "add": {
+    "message": "Добавить"
+  },
+  "enableHere": {
+    "message": "Включить"
+  },
+  "wordPlaceholder": {
+    "message": "Новое слово"
+  },
+  "searchPlaceholder": {
+    "message": "Поиск по словарю"
+  },
+  "dictCount": {
+    "message": "Слов в словаре: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "nothingFound": {
+    "message": "Ничего не найдено"
+  },
+  "wordAdded": {
+    "message": "Слово добавлено"
+  },
+  "notSet": {
+    "message": "не назначено"
+  },
+  "editShortcuts": {
+    "message": "Изменить"
+  },
+  "shortcutsCanEdit": {
+    "message": "Сочетания можно поменять в настройках браузера."
+  },
+  "aboutText": {
+    "message": "Бесплатная проверка орфографии и грамматики с открытым исходным кодом."
+  },
+  "privacyPolicy": {
+    "message": "Политика конфиденциальности"
+  },
+  "reportBug": {
+    "message": "Сообщить об ошибке"
+  },
+  "showWelcome": {
+    "message": "Показать приветствие"
+  },
+  "ltCredit": {
+    "message": "Проверку выполняет LanguageTool (LGPL). Гладко — независимый проект."
+  },
+  "welInstalled": {
+    "message": "Установлено"
+  },
+  "welTitle": {
+    "message": "Гладко готов к работе"
+  },
+  "welLead": {
+    "message": "Теперь ошибки подчёркиваются в любом поле ввода: в почте, мессенджерах, формах и редакторах."
+  },
+  "welTryTitle": {
+    "message": "Попробуйте прямо здесь"
+  },
+  "welTryHint": {
+    "message": "Нажмите на подчёркнутое слово"
+  },
+  "welDemoText": {
+    "message": "Привет! Я пишу это сообщение, чтобы праверить, как работает Гладко. Ихний сервер находит ошибки быстро."
+  },
+  "welStep1": {
+    "message": "Пишите как обычно"
+  },
+  "welStep1Sub": {
+    "message": "Ошибки подчёркиваются через секунду после паузы в наборе."
+  },
+  "welStep2": {
+    "message": "Исправляйте в один клик"
+  },
+  "welStep2Sub": {
+    "message": "Клик по слову — варианты. Значок в углу поля — все замечания сразу."
+  },
+  "welStep3": {
+    "message": "Закрепите значок"
+  },
+  "welStep3Sub": {
+    "message": "Нажмите на пазл на панели браузера и закрепите Гладко — там быстрые настройки."
+  },
+  "welWhereTitle": {
+    "message": "Где проверять текст?"
+  },
+  "welWhereSub": {
+    "message": "Выбор можно поменять в любой момент в настройках."
+  },
+  "welPickCloud": {
+    "message": "Облако LanguageTool"
+  },
+  "welPickCloudSub": {
+    "message": "Работает сразу. Если запустите свой сервер, Гладко сам переключится на него."
+  },
+  "welPickLocal": {
+    "message": "Только мой компьютер"
+  },
+  "welPickLocalSub": {
+    "message": "Нужен локальный сервер LanguageTool. Текст никуда не уходит."
+  },
+  "welPrivacy": {
+    "message": "Гладко не собирает данные и не показывает рекламу."
+  },
+  "welDone": {
+    "message": "Готово"
+  },
+  "popPausedSub": {
+    "message": "До $TIME$, потом включится сама",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "pausedShort": {
+    "message": "до $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1"
+      }
+    }
+  },
+  "langAutoShort": {
+    "message": "Автоопределение"
   }
 }

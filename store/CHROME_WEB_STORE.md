@@ -1,6 +1,6 @@
 # Chrome Web Store — что вставлять в форму
 
-Файл для загрузки: `dist/gladko-chrome-0.6.0.zip` (после `npm run build`).
+Файл для загрузки: `dist/gladko-chrome-0.7.0.zip` (после `npm run build`).
 Регистрация разработчика: https://chrome.google.com/webstore/devconsole (разовый взнос $5).
 
 ## Store listing
@@ -27,7 +27,8 @@ Gladko underlines mistakes in text fields on any site and fixes them in one clic
 **Single purpose:** Check spelling and grammar of text typed into text fields and offer corrections.
 
 **Permission justifications:**
-- `storage` — save settings, personal dictionary, list of disabled sites.
+- `storage` — save settings, personal dictionary, list of disabled sites, local usage counters.
+- `alarms` — clear the toolbar badge when a user-set pause ends.
 - `contextMenus` — "Check selected text" menu item.
 - Host `https://api.languagetool.org/*`, `https://api.languagetoolplus.com/*` — send the text to be checked to the LanguageTool servers chosen by the user.
 - Host `http://localhost:8081/*`, `http://127.0.0.1:8081/*` — optional local LanguageTool server (keeps text on the user's computer).

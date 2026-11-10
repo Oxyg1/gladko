@@ -9,6 +9,7 @@ const DEFAULTS = {
   server: "auto", endpoint: "", language: "auto", enabled: true,
   picky: false, username: "", apiKey: "", pausedUntil: 0, mutedSites: [],
 };
+const STATS0 = { day: "", checks: 0, fixes: 0, totalFixes: 0 };
 const LOCAL_RETRY_MS = 30000;
 const MAX_REQUEST_CHARS = 15000; // public API accepts 20000 per request
 const MAX_WAIT_MS = 25000;       // longest we are willing to queue behind the rate limit
@@ -138,22 +139,64 @@ async function check(text) {
   return { server, matches };
 }
 
+// ---------- daily stats (serialised so concurrent updates do not overwrite each other) ----------
+let statsChain = Promise.resolve();
+function bumpStats(field, n = 1) {
+  statsChain = statsChain.then(async () => {
+    const day = new Date().toLocaleDateString("sv");
+    const { stats } = await browser.storage.local.get({ stats: STATS0 });
+    const st = stats.day === day ? stats : { day, checks: 0, fixes: 0, totalFixes: stats.totalFixes || 0 };
+    st[field] += n;
+    if (field === "fixes") st.totalFixes = (st.totalFixes || 0) + n;
+    await browser.storage.local.set({ stats: st });
+  }).catch(() => {});
+  return statsChain;
+}
+
 async function handle(msg) {
   if (msg.type === "settings") return getSettings();
   if (msg.type === "probeLocal") return probeLocal();
-  if (msg.type === "check") return check(msg.text);
+  if (msg.type === "check") {
+    const res = await check(msg.text);
+    if (!res.error) bumpStats("checks");
+    return res;
+  }
+  if (msg.type === "fixed") { bumpStats("fixes", msg.count || 1); return true; }
+  if (msg.type === "openOptions") { browser.runtime.openOptionsPage(); return true; }
 }
 
 // sendResponse + `return true` works in Chrome (promise-returning listeners do not) and in Firefox.
 browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (!msg || !["settings", "probeLocal", "check", "fixed", "openOptions"].includes(msg.type)) return false;
   handle(msg).then(sendResponse, (e) => sendResponse({ error: String(e && e.message || e) }));
   return true;
 });
 
-// ---------- toolbar button, hotkeys, context menu ----------
+// ---------- toolbar badge: shows when checking is off or paused ----------
 const action = browser.action || browser.browserAction;
-if (action && action.onClicked) action.onClicked.addListener(() => browser.runtime.openOptionsPage());
+async function updateBadge() {
+  if (!action) return;
+  const s = await getSettings();
+  const paused = s.pausedUntil > Date.now();
+  const text = !s.enabled ? "off" : paused ? "II" : "";
+  action.setBadgeText({ text });
+  if (text) action.setBadgeBackgroundColor({ color: paused ? "#B9772F" : "#8A9396" });
+  if (action.setBadgeTextColor) action.setBadgeTextColor({ color: "#FFFFFF" });
+  if (browser.alarms) {
+    browser.alarms.clear("pause-end");
+    if (paused) browser.alarms.create("pause-end", { when: s.pausedUntil + 500 });
+  }
+}
+browser.storage.onChanged.addListener((ch) => { if (ch.enabled || ch.pausedUntil) updateBadge(); });
+if (browser.alarms) browser.alarms.onAlarm.addListener((a) => { if (a.name === "pause-end") updateBadge(); });
+updateBadge();
 
+// ---------- first run ----------
+browser.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") browser.tabs.create({ url: browser.runtime.getURL("welcome.html") });
+});
+
+// ---------- hotkeys, context menu ----------
 browser.commands.onCommand.addListener(async (name) => {
   if (name === "toggle-pause") {
     const s = await getSettings();

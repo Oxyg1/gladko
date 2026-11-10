@@ -5,7 +5,7 @@
 [🇷🇺 Русский](README.md) · **🇬🇧 English**
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-0.6.0-126067)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.7.0-126067)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-126067)](LICENSE)
 ![Firefox MV2](https://img.shields.io/badge/Firefox-MV2-FF7139?logo=firefoxbrowser&logoColor=white)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
@@ -32,8 +32,18 @@
 | 🔒 **Privacy** | no analytics, no servers of our own; local mode keeps text on your machine |
 | 🌍 **UI languages** | Russian and English |
 
+## 🎛️ Menu and settings
+
+Click the toolbar icon for a quick menu: main switch, "check on this site", pause, server, language and today's stats. Full settings are organised into sections, in light and dark themes. A welcome page with a live demo opens after install.
+
+<div align="center">
+<img src="docs/img/ui-popup.png" alt="Toolbar menu" width="30%">&nbsp;
+<img src="docs/img/ui-popup-dark.png" alt="Toolbar menu, dark theme" width="30%">
+</div>
+
 <details>
 <summary><b>More screenshots</b></summary>
+<img src="docs/img/ui-options.png" alt="Settings page" width="100%">
 <br>
 <img src="docs/img/en-1-underlines.png" alt="Underlined mistakes" width="100%">
 <img src="docs/img/en-3-panel.png" alt="Issues panel" width="100%">

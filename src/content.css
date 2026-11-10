@@ -68,3 +68,7 @@
   .gl-host .gl-item .gl-fix { color: #8fd0d5; }
 }
 .gl-host .gl-panel .gl-foot { margin: 0; flex-wrap: wrap; }
+.gl-host .gl-ptitle .gl-pright { display: inline-flex; align-items: center; gap: 10px; }
+.gl-host .gl-ptitle .gl-gear { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; font-size: 15px; color: #6b7a7d; cursor: pointer; }
+.gl-host .gl-ptitle .gl-gear:hover { background: #f1f4f4; color: #1c2a2d; }
+@media (prefers-color-scheme: dark) { .gl-host .gl-ptitle .gl-gear:hover { background: #26363a; color: #e6eeef; } }

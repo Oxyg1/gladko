@@ -1,8 +1,8 @@
 {
   "name": "gladko",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
-  "description": "Gladko — grammar checker for Firefox and Chrome (LanguageTool)",
+  "description": "Gladko \u2014 grammar checker for Firefox and Chrome (LanguageTool)",
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.js",
@@ -10,5 +10,7 @@
     "lint:firefox": "web-ext lint --source-dir dist/firefox",
     "check": "npm test && npm run build && npm run lint:firefox"
   },
-  "devDependencies": { "web-ext": "^8.0.0" }
+  "devDependencies": {
+    "web-ext": "^8.0.0"
+  }
 }

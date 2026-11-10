@@ -11,11 +11,11 @@ adding the `version` from `package.json`, and (3) zips the result.
 
 ## Steps
 ```bash
-unzip gladko-source-0.6.0.zip -d gladko && cd gladko
+unzip gladko-source-0.7.0.zip -d gladko && cd gladko
 node scripts/build.mjs
 ```
-The Firefox package is created at `dist/gladko-firefox-0.6.0.zip` (the unpacked files are in `dist/firefox/`).
-It is identical in content to the uploaded add-on. (A Chrome package, `dist/gladko-chrome-0.6.0.zip`, is built too; it is not part of this submission.)
+The Firefox package is created at `dist/gladko-firefox-0.7.0.zip` (the unpacked files are in `dist/firefox/`).
+It is identical in content to the uploaded add-on. (A Chrome package, `dist/gladko-chrome-0.7.0.zip`, is built too; it is not part of this submission.)
 
 `npm install` is **not** needed to build; it only installs `web-ext`, used for the optional lint step (`npm run lint:firefox`) and `playwright` for end-to-end tests.
 

@@ -1,72 +1,199 @@
 <!doctype html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gladko</title>
 <link rel="icon" href="icons/icon-32.png">
+<link rel="stylesheet" href="ui.css">
 <link rel="stylesheet" href="options.css">
-<h2><img src="icons/logo.svg" alt=""><span data-i18n="optTitle"></span></h2>
+<body>
+<div class="layout">
+  <aside class="side">
+    <div class="side-brand">
+      <img class="logo" src="icons/logo.svg" alt="">
+      <div><b data-i18n="extShortName"></b><span id="version" class="muted small"></span></div>
+    </div>
+    <nav class="nav" aria-label="sections">
+      <a href="#general"><i data-icon="power"></i><span data-i18n="secGeneral"></span></a>
+      <a href="#server"><i data-icon="server"></i><span data-i18n="secServer"></span></a>
+      <a href="#checking"><i data-icon="lang"></i><span data-i18n="secChecking"></span></a>
+      <a href="#sites"><i data-icon="globe"></i><span data-i18n="secSites"></span></a>
+      <a href="#dictionary"><i data-icon="book"></i><span data-i18n="secDictionary"></span></a>
+      <a href="#shortcuts"><i data-icon="keyboard"></i><span data-i18n="secShortcuts"></span></a>
+      <a href="#about"><i data-icon="info"></i><span data-i18n="secAbout"></span></a>
+    </nav>
+    <div class="side-note"><i data-icon="shield"></i><span class="small" data-i18n="sideNote"></span></div>
+  </aside>
 
-<label class="inline"><input type="checkbox" id="enabled"> <span data-i18n="optEnabled"></span></label>
+  <main class="main">
+    <!-- General -->
+    <section id="general" class="sec">
+      <header class="sec-head"><h2 data-i18n="secGeneral"></h2><p class="muted" data-i18n="secGeneralSub"></p></header>
+      <div class="card">
+        <div class="item">
+          <div class="item-text"><b data-i18n="optEnabled"></b><span class="muted small" data-i18n="optEnabledSub"></span></div>
+          <label class="switch"><input id="enabled" type="checkbox"><span></span></label>
+        </div>
+        <div class="item">
+          <div class="item-text"><b data-i18n="popPause"></b><span id="pause-sub" class="muted small"></span></div>
+          <div class="seg" id="pause-seg">
+            <button data-pause="15m" data-i18n="pause15m"></button>
+            <button data-pause="1h" data-i18n="pause1h"></button>
+            <button data-pause="tomorrow" data-i18n="pauseTomorrow"></button>
+          </div>
+          <button id="resume" class="btn btn-primary btn-sm" hidden><i data-icon="play"></i><span data-i18n="optResume"></span></button>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><i data-icon="wand"></i><b id="st-fixes">0</b><span class="muted small" data-i18n="statFixesToday"></span></div>
+        <div class="tile"><i data-icon="chart"></i><b id="st-checks">0</b><span class="muted small" data-i18n="statChecksToday"></span></div>
+        <div class="tile"><i data-icon="star"></i><b id="st-total">0</b><span class="muted small" data-i18n="statFixesTotal"></span></div>
+      </div>
+    </section>
 
-<label for="server" data-i18n="optServer"></label>
-<select id="server">
-  <option value="auto" data-i18n="optServerAuto"></option>
-  <option value="local" data-i18n="optServerLocal"></option>
-  <option value="public" data-i18n="optServerPublic"></option>
-  <option value="premium" data-i18n="optServerPremium"></option>
-  <option value="custom" data-i18n="optServerCustom"></option>
-</select>
-<small data-i18n="optServerHint"></small>
-<div id="probe"></div>
+    <!-- Server -->
+    <section id="server" class="sec">
+      <header class="sec-head"><h2 data-i18n="secServer"></h2><p class="muted" data-i18n="secServerSub"></p></header>
+      <div class="choices" role="radiogroup">
+        <label class="choice"><input type="radio" name="server" value="auto"><span class="choice-body">
+          <i data-icon="auto"></i><b data-i18n="srvAutoTitle"></b><span class="muted small" data-i18n="srvAutoDesc"></span>
+          <span class="pill brand" data-i18n="badgeRecommended"></span></span></label>
+        <label class="choice"><input type="radio" name="server" value="public"><span class="choice-body">
+          <i data-icon="cloud"></i><b data-i18n="srvPublic"></b><span class="muted small" data-i18n="srvPublicDesc"></span>
+          <span class="pill warn" data-i18n="badgeLimits"></span></span></label>
+        <label class="choice"><input type="radio" name="server" value="local"><span class="choice-body">
+          <i data-icon="laptop"></i><b data-i18n="srvLocal"></b><span class="muted small" data-i18n="srvLocalDesc"></span>
+          <span class="pill ok" data-i18n="badgePrivate"></span></span></label>
+        <label class="choice"><input type="radio" name="server" value="premium"><span class="choice-body">
+          <i data-icon="star"></i><b data-i18n="srvPremium"></b><span class="muted small" data-i18n="srvPremiumDesc"></span>
+          <span class="pill" data-i18n="badgeKey"></span></span></label>
+        <label class="choice"><input type="radio" name="server" value="custom"><span class="choice-body">
+          <i data-icon="link"></i><b data-i18n="srvCustom"></b><span class="muted small" data-i18n="srvCustomDesc"></span>
+          <span class="pill" data-i18n="badgeAdvanced"></span></span></label>
+      </div>
 
-<div id="custom-row" hidden>
-  <label for="endpoint" data-i18n="optEndpoint"></label>
-  <input id="endpoint" placeholder="http://localhost:8082/v2/check">
-  <small data-i18n="optEndpointHint"></small>
-  <button id="allow" type="button" data-i18n="optAllow"></button>
+      <div class="card" id="premium-box" hidden>
+        <div class="item item-col">
+          <label for="username"><b data-i18n="optUsername"></b></label>
+          <input id="username" class="field" type="email" autocomplete="off" placeholder="name@example.com">
+          <label for="apiKey"><b data-i18n="optApiKey"></b></label>
+          <div class="field-row">
+            <input id="apiKey" class="field" type="password" autocomplete="off">
+            <button id="show-key" class="btn btn-icon" type="button" data-i18n-title="showKey"><i data-icon="eye"></i></button>
+          </div>
+          <span class="muted small" data-i18n="premiumHint"></span>
+        </div>
+      </div>
+
+      <div class="card" id="custom-box" hidden>
+        <div class="item item-col">
+          <label for="endpoint"><b data-i18n="optEndpoint"></b></label>
+          <div class="field-row">
+            <input id="endpoint" class="field" placeholder="https://lt.example.com/v2/check">
+            <button id="allow" class="btn btn-primary" type="button"><i data-icon="lock"></i><span data-i18n="optAllow"></span></button>
+          </div>
+          <span class="muted small" data-i18n="optEndpointHint"></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="item">
+          <div class="item-text"><b data-i18n="localTitle"></b><span class="muted small" data-i18n="localSub"></span></div>
+          <span id="local-pill" class="pill"><span class="dot"></span><span id="local-state"></span></span>
+          <button id="probe" class="btn btn-sm btn-ghost btn-icon" data-i18n-title="localRecheck"><i data-icon="refresh"></i></button>
+        </div>
+        <div class="item item-col">
+          <span class="muted small" data-i18n="localHowTo"></span>
+          <div class="code"><code id="docker-cmd">docker run -d --name languagetool -p 8081:8010 erikvl87/languagetool</code>
+            <button id="copy-docker" class="btn btn-sm btn-ghost" type="button"><i data-icon="copy"></i><span data-i18n="copy"></span></button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checking -->
+    <section id="checking" class="sec">
+      <header class="sec-head"><h2 data-i18n="secChecking"></h2><p class="muted" data-i18n="secCheckingSub"></p></header>
+      <div class="card">
+        <div class="item">
+          <div class="item-text"><b data-i18n="optLanguage"></b><span class="muted small" data-i18n="optLanguageSub"></span></div>
+          <select id="language" class="field field-auto"></select>
+        </div>
+        <div class="item">
+          <div class="item-text"><b data-i18n="optPickyTitle"></b><span class="muted small" data-i18n="optPickySub"></span></div>
+          <label class="switch"><input id="picky" type="checkbox"><span></span></label>
+        </div>
+        <div class="item item-legend">
+          <span class="legend"><span class="ul spell"></span><span data-i18n="kindSpell"></span></span>
+          <span class="legend"><span class="ul grammar"></span><span data-i18n="kindGrammar"></span></span>
+          <span class="legend"><span class="ul style"></span><span data-i18n="kindStyle"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sites -->
+    <section id="sites" class="sec">
+      <header class="sec-head"><h2 data-i18n="secSites"></h2><p class="muted" data-i18n="secSitesSub"></p></header>
+      <div class="card">
+        <form class="item" id="site-form">
+          <input id="site-input" class="field" data-i18n-placeholder="sitePlaceholder">
+          <button class="btn" type="submit"><i data-icon="plus"></i><span data-i18n="add"></span></button>
+        </form>
+        <ul id="muted" class="rows"></ul>
+      </div>
+    </section>
+
+    <!-- Dictionary -->
+    <section id="dictionary" class="sec">
+      <header class="sec-head"><h2 data-i18n="secDictionary"></h2><p class="muted" data-i18n="secDictionarySub"></p></header>
+      <div class="card">
+        <form class="item" id="word-form">
+          <input id="word-input" class="field" data-i18n-placeholder="wordPlaceholder">
+          <button class="btn" type="submit"><i data-icon="plus"></i><span data-i18n="add"></span></button>
+        </form>
+        <div class="item" id="dict-tools">
+          <div class="search"><i data-icon="search"></i><input id="dict-search" class="field" data-i18n-placeholder="searchPlaceholder"></div>
+          <button id="export" class="btn btn-sm" type="button"><i data-icon="download"></i><span data-i18n="optExport"></span></button>
+          <button id="import" class="btn btn-sm" type="button"><i data-icon="upload"></i><span data-i18n="optImport"></span></button>
+          <input id="file" type="file" accept=".txt,.json,text/plain,application/json" hidden>
+        </div>
+        <div class="item item-col">
+          <div id="dict" class="chips"></div>
+          <span id="dict-count" class="muted small"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shortcuts -->
+    <section id="shortcuts" class="sec">
+      <header class="sec-head"><h2 data-i18n="secShortcuts"></h2><p class="muted" data-i18n="secShortcutsSub"></p></header>
+      <div class="card">
+        <ul id="commands" class="rows"></ul>
+        <div class="item">
+          <span class="muted small" id="shortcuts-hint" data-i18n="optShortcutsHint"></span>
+          <button id="edit-shortcuts" class="btn btn-sm" type="button" hidden><i data-icon="keyboard"></i><span data-i18n="editShortcuts"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="sec">
+      <header class="sec-head"><h2 data-i18n="secAbout"></h2></header>
+      <div class="card about">
+        <div class="item">
+          <img class="logo-lg" src="icons/logo.svg" alt="">
+          <div class="item-text"><b data-i18n="extName"></b><span class="muted small" data-i18n="aboutText"></span></div>
+        </div>
+        <div class="item links">
+          <a class="btn btn-sm" href="https://github.com/Oxyg1/gladko" target="_blank" rel="noopener"><i data-icon="external"></i>GitHub</a>
+          <a class="btn btn-sm" href="https://github.com/Oxyg1/gladko/blob/main/store/PRIVACY_POLICY.md" target="_blank" rel="noopener"><i data-icon="shield"></i><span data-i18n="privacyPolicy"></span></a>
+          <a class="btn btn-sm" href="https://github.com/Oxyg1/gladko/issues/new/choose" target="_blank" rel="noopener"><i data-icon="info"></i><span data-i18n="reportBug"></span></a>
+          <button id="show-welcome" class="btn btn-sm btn-ghost" type="button" data-i18n="showWelcome"></button>
+        </div>
+        <div class="item"><span class="muted small" data-i18n="ltCredit"></span></div>
+      </div>
+    </section>
+  </main>
 </div>
-<div id="premium-row" hidden>
-  <label for="username" data-i18n="optUsername"></label>
-  <input id="username" type="email" autocomplete="off">
-  <label for="apiKey" data-i18n="optApiKey"></label>
-  <input id="apiKey" type="password" autocomplete="off">
-</div>
-
-<label for="language" data-i18n="optLanguage"></label>
-<select id="language">
-  <option value="auto" data-i18n="optLangAuto"></option>
-  <option value="ru-RU">Русский</option>
-  <option value="en-US">English (US)</option>
-  <option value="en-GB">English (UK)</option>
-  <option value="uk-UA">Українська</option>
-  <option value="de-DE">Deutsch</option>
-  <option value="fr">Français</option>
-  <option value="es">Español</option>
-  <option value="pt-PT">Português</option>
-  <option value="it">Italiano</option>
-  <option value="pl-PL">Polski</option>
-</select>
-<label class="inline"><input type="checkbox" id="picky"> <span data-i18n="optPicky"></span></label>
-
-<h3 data-i18n="optPause"></h3>
-<div id="pause-state"></div>
-<button id="pause" type="button"></button>
-
-<h3 data-i18n="optMuted"></h3>
-<ul id="muted"></ul>
-
-<h3 data-i18n="optDictionary"></h3>
-<ul id="dict"></ul>
-<button id="export" type="button" data-i18n="optExport"></button>
-<button id="import" type="button" data-i18n="optImport"></button>
-<input id="file" type="file" accept=".txt,.json,text/plain,application/json" hidden>
-
-<h3 data-i18n="optShortcuts"></h3>
-<small>Alt+Shift+F — <span data-i18n="cmdFixAll"></span><br>
-Alt+Shift+N — <span data-i18n="cmdNextIssue"></span><br>
-Alt+Shift+P — <span data-i18n="cmdTogglePause"></span></small><br>
-<small data-i18n="optShortcutsHint"></small>
-
-<p><small data-i18n="optPrivacy"></small></p>
-<p id="st" role="status"></p>
 <script src="polyfill.js"></script>
+<script src="icons.js"></script>
+<script src="ui-common.js"></script>
 <script src="options.js"></script>

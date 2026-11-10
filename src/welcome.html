@@ -1,0 +1,55 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gladko</title>
+<link rel="icon" href="icons/icon-32.png">
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="welcome.css">
+<link rel="stylesheet" href="content.css">
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img class="logo-xl" src="icons/logo.svg" alt="">
+    <div>
+      <span class="pill ok"><i data-icon="check"></i><span data-i18n="welInstalled"></span></span>
+      <h1 data-i18n="welTitle"></h1>
+      <p class="lead muted" data-i18n="welLead"></p>
+    </div>
+  </header>
+
+  <section class="demo card">
+    <div class="demo-head">
+      <b data-i18n="welTryTitle"></b>
+      <span class="muted small" data-i18n="welTryHint"></span>
+    </div>
+    <textarea id="demo" spellcheck="false"></textarea>
+  </section>
+
+  <section class="steps">
+    <div class="step"><span class="num">1</span><i data-icon="keyboard"></i><b data-i18n="welStep1"></b><span class="muted small" data-i18n="welStep1Sub"></span></div>
+    <div class="step"><span class="num">2</span><i data-icon="wand"></i><b data-i18n="welStep2"></b><span class="muted small" data-i18n="welStep2Sub"></span></div>
+    <div class="step"><span class="num">3</span><i data-icon="pin"></i><b data-i18n="welStep3"></b><span class="muted small" data-i18n="welStep3Sub"></span></div>
+  </section>
+
+  <section class="where">
+    <h2 data-i18n="welWhereTitle"></h2>
+    <p class="muted" data-i18n="welWhereSub"></p>
+    <div class="pick">
+      <button class="pick-card" data-server="auto"><i data-icon="cloud"></i><b data-i18n="welPickCloud"></b><span class="muted small" data-i18n="welPickCloudSub"></span><span class="pill brand" data-i18n="badgeRecommended"></span></button>
+      <button class="pick-card" data-server="local"><i data-icon="laptop"></i><b data-i18n="welPickLocal"></b><span class="muted small" data-i18n="welPickLocalSub"></span><span class="pill ok" data-i18n="badgePrivate"></span></button>
+    </div>
+  </section>
+
+  <footer class="actions">
+    <span class="muted small"><i data-icon="shield"></i><span data-i18n="welPrivacy"></span></span>
+    <div>
+      <button id="settings" class="btn"><i data-icon="sliders"></i><span data-i18n="popAllSettings"></span></button>
+      <button id="done" class="btn btn-primary"><span data-i18n="welDone"></span><i data-icon="arrow"></i></button>
+    </div>
+  </footer>
+</div>
+<script src="polyfill.js"></script>
+<script src="icons.js"></script>
+<script src="ui-common.js"></script>
+<script src="welcome.js"></script>
+<script src="content.js"></script>

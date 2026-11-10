@@ -285,6 +285,7 @@
     closeCard();
     onEdit();
     schedule(300);
+    browser.runtime.sendMessage({ type: "fixed" }).catch(() => {});
   }
 
   // ---------- card ----------
@@ -350,7 +351,12 @@
   function renderPanel() {
     panel.replaceChildren();
     const title = mk("div", "gl-ptitle", tr("extShortName"));
-    title.append(mk("span", null, matches.length ? tr("panelCount", matches.length) : ""));
+    const right = mk("span", "gl-pright", matches.length ? tr("panelCount", matches.length) : "");
+    const gear = mk("span", "gl-gear", "⚙");
+    gear.title = tr("popSettings");
+    gear.addEventListener("click", () => browser.runtime.sendMessage({ type: "openOptions" }).catch(() => {}));
+    right.append(gear);
+    title.append(right);
     panel.append(title);
     if (!matches.length) { panel.append(mk("div", "gl-empty", tr("panelEmpty"))); }
     for (const m of matches) {
@@ -445,7 +451,11 @@
   }
   document.addEventListener("mousedown", (e) => { if (report && !report.contains(e.target) && !host.contains(e.target)) closeReport(); }, true);
 
-  browser.runtime.onMessage.addListener((msg) => {
+  browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg.type === "hostname") {
+      sendResponse({ host: location.protocol.startsWith("http") ? location.hostname : null });
+      return;
+    }
     if (msg.type === "command") {
       if (msg.name === "fix-all") fixAll();
       else if (msg.name === "next-issue") nextIssue();
