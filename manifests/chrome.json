@@ -36,6 +36,7 @@
       ],
       "js": [
         "polyfill.js",
+        "icons.js",
         "content.js"
       ],
       "css": [

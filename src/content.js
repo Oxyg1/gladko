@@ -289,35 +289,62 @@
   }
 
   // ---------- card ----------
+  const ic = (name) => GlIcons.make(name, "gl-i");
+  function link(icon, label, onClick, cls = "gl-link") {
+    const el = mk("span", cls);
+    el.append(ic(icon), mk("span", null, label));
+    el.addEventListener("click", onClick);
+    return el;
+  }
+
   function openCard(m) {
     closeCard();
     closePanel();
     cardMatch = m;
     const k = kind(m);
-    card = mk("div", "gl-card");
+    card = mk("div", "gl-card " + k.cls);
+    card.setAttribute("role", "dialog");
     card.addEventListener("mousedown", (e) => e.preventDefault());
+
     const head = mk("div", "gl-head");
-    head.append(mk("span", "gl-dot " + k.cls), mk("span", null, m.category || k.label));
+    const tag = mk("span", "gl-tag " + k.cls);
+    tag.append(mk("span", "gl-dot " + k.cls), mk("span", null, k.label));
+    const close = mk("span", "gl-icon-btn");
+    close.title = tr("close");
+    close.append(ic("x"));
+    close.addEventListener("click", closeCard);
+    head.append(tag, mk("span", "gl-spacer"), close);
+
+    const fix = mk("div", "gl-fixline");
+    const w = word(m).trim();
+    if (w) fix.append(mk("span", "gl-wrong " + k.cls, w));
+    if (w && m.replacements.length) fix.append(mk("span", "gl-to", "→"));
     const sugs = mk("div", "gl-sugs");
     m.replacements.forEach((rep, i) => {
       const b = mk("span", "gl-sug" + (i === 0 ? " gl-main" : ""), rep === "" ? tr("remove") : rep);
+      b.title = tr("applyFix");
       b.addEventListener("click", () => apply(m, rep));
-      sugs.append(b);
+      (i === 0 ? fix : sugs).append(b);
     });
+
+    const body = mk("div", "gl-body");
+    body.append(fix, mk("div", "gl-msg", m.message));
+    if (m.replacements.length > 1) {
+      body.append(mk("div", "gl-alt", tr("otherOptions")), sugs);
+    } else if (!m.replacements.length) {
+      body.append(mk("div", "gl-none", tr("noSuggestions")));
+    }
+
     const foot = mk("div", "gl-foot");
-    const skip = mk("span", "gl-link", tr("skip"));
-    skip.addEventListener("click", () => { ignored.add(ignoreKey(m)); refilter(); });
-    foot.append(skip);
+    foot.append(link("ban", tr("skip"), () => { ignored.add(ignoreKey(m)); refilter(); }));
     if (m.issueType === "misspelling") {
-      const add = mk("span", "gl-link", tr("addToDictionary"));
-      add.addEventListener("click", () => {
+      foot.append(link("bookplus", tr("addToDictionary"), () => {
         dictionary.add(word(m).toLowerCase());
         browser.storage.local.set({ dictionary: [...dictionary] });
         refilter();
-      });
-      foot.append(add);
+      }));
     }
-    card.append(head, mk("div", "gl-msg", m.message), m.replacements.length ? sugs : mk("div", "gl-none", tr("noSuggestions")), foot);
+    card.append(head, body, foot);
     host.append(card);
     draw();
   }
@@ -352,7 +379,8 @@
     panel.replaceChildren();
     const title = mk("div", "gl-ptitle", tr("extShortName"));
     const right = mk("span", "gl-pright", matches.length ? tr("panelCount", matches.length) : "");
-    const gear = mk("span", "gl-gear", "⚙");
+    const gear = mk("span", "gl-icon-btn");
+    gear.append(ic("settings"));
     gear.title = tr("popSettings");
     gear.addEventListener("click", () => browser.runtime.sendMessage({ type: "openOptions" }).catch(() => {}));
     right.append(gear);
@@ -373,15 +401,20 @@
     }
     const foot = mk("div", "gl-foot");
     if (matches.some((m) => m.replacements.length)) {
-      const all = mk("span", "gl-link", tr("fixAll"));
-      all.addEventListener("click", fixAll);
-      foot.append(all);
+      foot.append(link("wand", tr("fixAll"), fixAll, "gl-link gl-strong"));
     }
-    const pause = mk("span", "gl-link", tr("pauseHour"));
-    pause.addEventListener("click", () => browser.storage.local.set({ pausedUntil: Date.now() + 3600 * 1000 }));
-    const mute = mk("span", "gl-link", tr("muteSite"));
-    mute.addEventListener("click", () => browser.storage.local.set({ mutedSites: [...new Set([...mutedSites, location.hostname])] }));
-    foot.append(pause, mute);
+    const iconBtn = (icon, title, onClick) => {
+      const el = mk("span", "gl-icon-btn");
+      el.title = title;
+      el.append(ic(icon));
+      el.addEventListener("click", onClick);
+      return el;
+    };
+    foot.append(
+      mk("span", "gl-spacer"),
+      iconBtn("pause", tr("pauseHour"), () => browser.storage.local.set({ pausedUntil: Date.now() + 3600 * 1000 })),
+      iconBtn("eyeoff", tr("muteSite") + " (" + location.hostname + ")", () => browser.storage.local.set({ mutedSites: [...new Set([...mutedSites, location.hostname])] })),
+    );
     panel.append(foot);
   }
   function placePanel() {

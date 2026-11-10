@@ -17,6 +17,9 @@
 
 <div align="center">
 <img src="docs/img/ru-2-suggestion.png" alt="Карточка с исправлением" width="88%">
+<br><br>
+<img src="docs/img/ui-card.png" alt="Карточка исправления" width="42%">&nbsp;
+<img src="docs/img/ui-card-dark.png" alt="Карточка исправления, тёмная тема" width="42%">
 </div>
 
 ## ✨ Возможности

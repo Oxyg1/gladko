@@ -545,5 +545,14 @@
   },
   "langAutoShort": {
     "message": "Auto-detect"
+  },
+  "close": {
+    "message": "Close"
+  },
+  "applyFix": {
+    "message": "Apply"
+  },
+  "otherOptions": {
+    "message": "Other options"
   }
 }

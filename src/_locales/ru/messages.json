@@ -545,5 +545,14 @@
   },
   "langAutoShort": {
     "message": "Автоопределение"
+  },
+  "close": {
+    "message": "Закрыть"
+  },
+  "applyFix": {
+    "message": "Исправить"
+  },
+  "otherOptions": {
+    "message": "Другие варианты"
   }
 }
