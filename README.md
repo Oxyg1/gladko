@@ -2,12 +2,14 @@
 
 <img src="docs/img/banner.png" alt="Гладко — проверка орфографии и грамматики" width="100%">
 
+<a href="https://addons.mozilla.org/ru/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/"><img src="https://img.shields.io/badge/Установить_в_Firefox-FF7139?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Установить в Firefox"></a>
+
 **🇷🇺 Русский** · [🇬🇧 English](README.en.md)
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
 [![Версия](https://img.shields.io/badge/версия-0.7.0-126067)](CHANGELOG.md)
 [![Лицензия: MIT](https://img.shields.io/badge/лицензия-MIT-126067)](LICENSE)
-![Firefox MV2](https://img.shields.io/badge/Firefox-MV2-FF7139?logo=firefoxbrowser&logoColor=white)
+[![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-установить-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/ru/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
 [![На базе LanguageTool](https://img.shields.io/badge/на_базе-LanguageTool-F2A45A)](https://languagetool.org)
 
@@ -59,10 +61,9 @@
 
 | Браузер | Как поставить |
 |---|---|
-| **Firefox** | Каталог addons.mozilla.org — *на проверке*. Пока: скачайте `gladko-firefox-*.zip` из [Releases](https://github.com/Oxyg1/gladko/releases) |
+| **Firefox** | **[Установить из каталога Firefox Add-ons](https://addons.mozilla.org/ru/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/)** — подписано Mozilla, обновляется автоматически |
 | **Chrome / Edge / Brave** | Chrome Web Store — *скоро*. Пока: скачайте `gladko-chrome-*.zip`, распакуйте, откройте `chrome://extensions`, включите «Режим разработчика» → «Загрузить распакованное расширение» |
 
-> Неподписанную сборку Firefox можно временно загрузить через `about:debugging` → «Этот Firefox» → «Загрузить временное дополнение». Для постоянной установки используйте подписанную версию из каталога.
 
 ## 🔧 Серверы проверки
 
@@ -122,7 +123,8 @@ docs/        баннер, скриншоты, брендбук
 
 - [ ] Офлайн-проверка орфографии (Hunspell) без сервера
 - [ ] Кнопка «Улучшить текст» через LLM по собственному ключу пользователя
-- [ ] Публикация в каталогах Firefox и Chrome
+- [x] Публикация в каталоге Firefox
+- [ ] Публикация в Chrome Web Store
 
 ## 📄 Лицензия и благодарности
 
