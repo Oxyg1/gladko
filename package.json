@@ -8,7 +8,8 @@
     "test": "node --test test/*.test.js",
     "e2e": "node test/e2e-chrome.mjs",
     "lint:firefox": "web-ext lint --source-dir dist/firefox",
-    "check": "npm test && npm run build && npm run lint:firefox"
+    "check": "npm test && npm run build && npm run lint:firefox",
+    "store-shots": "npm run build && node scripts/store-shots.mjs ru && node scripts/store-shots.mjs en"
   },
   "devDependencies": {
     "web-ext": "^8.0.0"

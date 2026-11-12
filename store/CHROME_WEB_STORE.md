@@ -21,7 +21,7 @@
 **Description (EN):**
 Gladko underlines mistakes in text fields on any site and fixes them in one click. Spelling, grammar, punctuation and style in many languages; automatic language detection; personal dictionary with import/export; "Fix all" (Alt+Shift+F), next issue (Alt+Shift+N), pause for an hour (Alt+Shift+P); check selected text from the context menu; per-site disable. Works with a local LanguageTool server, so your text never leaves your computer. NOTE: by default the text is sent to LanguageTool (api.languagetool.org) for checking. The extension collects and stores nothing.
 
-**Графика:** значок 128×128 — `src/icons/icon-128.png`; скриншоты 1280×800 — `store/screenshots/` (ru-*, en-*), нужен минимум 1; малая промо-плитка 440×280 — `store/promo-440x280.png`.
+**Графика:** значок 128×128 — `src/icons/icon-128.png`; скриншоты 1280×800 — `store/screenshots/ru-1…5.png` и `en-1…5.png` (пересобрать: `npm run store-shots`), нужен минимум 1; малая промо-плитка 440×280 — `store/promo-440x280.png`.
 
 ## Privacy practices (вкладка «Конфиденциальность»)
 **Single purpose:** Check spelling and grammar of text typed into text fields and offer corrections.
