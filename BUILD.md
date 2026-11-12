@@ -24,4 +24,5 @@ It is identical in content to the uploaded add-on. (A Chrome package, `dist/glad
 - `manifests/firefox.json` — Firefox manifest template.
 - `scripts/build.mjs` — the build script (about 30 lines).
 - `test/` — unit and end-to-end tests (not shipped).
-- No third-party libraries are bundled.
+- No third-party JavaScript libraries are bundled. `src/icons.js` contains SVG path data for 36 icons copied unmodified from
+  Lucide v0.460.0 (`lucide-static` npm package, `icons/*.svg`, ISC license, see THIRD_PARTY_LICENSES.md); the icon name is noted next to each entry.
