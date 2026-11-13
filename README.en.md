@@ -2,14 +2,14 @@
 
 <img src="docs/img/banner-en.png" alt="Gladko — spelling and grammar check" width="100%">
 
-<a href="https://addons.mozilla.org/en-US/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/"><img src="https://img.shields.io/badge/Get_it_for_Firefox-FF7139?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Get it for Firefox"></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/gladko-grammar-check/"><img src="https://img.shields.io/badge/Get_it_for_Firefox-FF7139?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Get it for Firefox"></a>
 
 [🇷🇺 Русский](README.md) · **🇬🇧 English**
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/badge/version-0.7.0-126067)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-126067)](LICENSE)
-[![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/)
+[![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/gladko-grammar-check/)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
 [![Powered by LanguageTool](https://img.shields.io/badge/powered_by-LanguageTool-F2A45A)](https://languagetool.org)
 
@@ -55,7 +55,7 @@ Click the toolbar icon for a quick menu: main switch, "check on this site", paus
 
 | Browser | How |
 |---|---|
-| **Firefox** | **[Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/%D0%B3%D0%BB%D0%B0%D0%B4%D0%BA%D0%BE-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8/)** — signed by Mozilla, updates automatically |
+| **Firefox** | **[Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/gladko-grammar-check/)** — signed by Mozilla, updates automatically |
 | **Chrome / Edge / Brave** | Chrome Web Store — *coming soon*. For now, download `gladko-chrome-*.zip`, unzip, open `chrome://extensions`, enable Developer mode → Load unpacked |
 
 ## 🔧 Check servers
