@@ -73,6 +73,7 @@ async function render() {
   $("#server-pill").className = "pill " + info.cls;
 
   $("#language").value = s.language;
+  $("#layoutMode").value = s.layoutMode;
 
   const st = Gl.todayStats(s);
   $("#st-fixes").textContent = Gl.num(st.fixes);
@@ -91,6 +92,7 @@ $("#site").addEventListener("change", async (e) => {
 for (const b of $$("[data-pause]")) b.addEventListener("click", () => set({ pausedUntil: Gl.pauseUntil(b.dataset.pause) }));
 $("#resume").addEventListener("click", () => set({ pausedUntil: 0 }));
 $("#language").addEventListener("change", (e) => set({ language: e.target.value }));
+$("#layoutMode").addEventListener("change", (e) => set({ layoutMode: e.target.value }));
 
 function openOptions(hash) {
   if (hash) browser.tabs.create({ url: browser.runtime.getURL("options.html#" + hash) });

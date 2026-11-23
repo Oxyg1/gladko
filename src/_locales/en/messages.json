@@ -554,5 +554,77 @@
   },
   "otherOptions": {
     "message": "Other options"
+  },
+  "kindLayout": {
+    "message": "Layout"
+  },
+  "layoutMsg": {
+    "message": "Looks like this was typed in the wrong keyboard layout"
+  },
+  "layoutUndo": {
+    "message": "Undo"
+  },
+  "cmdFixLayout": {
+    "message": "Fix keyboard layout"
+  },
+  "secLayout": {
+    "message": "Keyboard layout"
+  },
+  "secLayoutSub": {
+    "message": "Typed “руддщ” instead of “hello”? Gladko fixes Russian ↔ English text typed in the wrong keyboard layout."
+  },
+  "layoutOff": {
+    "message": "Off"
+  },
+  "layoutOffDesc": {
+    "message": "Layout is not checked."
+  },
+  "layoutHotkey": {
+    "message": "On hotkey"
+  },
+  "layoutHotkeyDesc": {
+    "message": "Press the shortcut to convert the last word or the selection."
+  },
+  "layoutSuggest": {
+    "message": "Suggest"
+  },
+  "layoutSuggestDesc": {
+    "message": "Words in the wrong layout get a dashed underline; fix them in one click."
+  },
+  "layoutAuto": {
+    "message": "Fix as you type"
+  },
+  "layoutAutoDesc": {
+    "message": "The word is fixed after you press space. Undo with the button or Ctrl+Z."
+  },
+  "badgeConvenient": {
+    "message": "Most convenient"
+  },
+  "layoutExampleTitle": {
+    "message": "How it works"
+  },
+  "layoutExample": {
+    "message": "Gladko only converts words that become real Russian or English words in the other layout. Normal words, links and acronyms are left alone."
+  },
+  "layoutKeyHint": {
+    "message": "Converts the last word or the selection. Press again to undo. Works in every mode except Off."
+  },
+  "layoutPrivacy": {
+    "message": "Layout detection runs inside your browser: no text is sent anywhere."
+  },
+  "popLayout": {
+    "message": "Layout"
+  },
+  "layoutShortOff": {
+    "message": "Off"
+  },
+  "layoutShortHotkey": {
+    "message": "Hotkey"
+  },
+  "layoutShortSuggest": {
+    "message": "Suggest"
+  },
+  "layoutShortAuto": {
+    "message": "As you type"
   }
 }

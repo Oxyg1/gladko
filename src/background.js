@@ -1,4 +1,4 @@
-if (typeof importScripts === "function") importScripts("polyfill.js", "lib.js"); // Chrome MV3 service worker
+if (typeof importScripts === "function") importScripts("polyfill.js", "lib.js", "layout.js", "layout-data.js"); // Chrome MV3 service worker
 
 const { splitUnits, pack, distribute, RateLimiter, LRU } = GladkoLib;
 
@@ -8,6 +8,7 @@ const LOCAL = "http://localhost:8081/v2/check";
 const DEFAULTS = {
   server: "auto", endpoint: "", language: "auto", enabled: true,
   picky: false, username: "", apiKey: "", pausedUntil: 0, mutedSites: [],
+  layoutMode: "off", // "off" | "hotkey" | "suggest" | "auto"
 };
 const STATS0 = { day: "", checks: 0, fixes: 0, totalFixes: 0 };
 const LOCAL_RETRY_MS = 30000;
@@ -163,11 +164,29 @@ async function handle(msg) {
   }
   if (msg.type === "fixed") { bumpStats("fixes", msg.count || 1); return true; }
   if (msg.type === "openOptions") { browser.runtime.openOptionsPage(); return true; }
+  if (msg.type === "layoutAnalyze") return layoutAnalyze(msg.text);
+  if (msg.type === "layoutConvert") {
+    if (!layoutDetector) layoutDetector = new GladkoLayout.Detector(GladkoLayoutData);
+    return layoutDetector.convertText(String(msg.text || "").slice(0, 100000));
+  }
 }
+
+// ---------- wrong keyboard layout (runs locally, nothing is sent anywhere) ----------
+let layoutDetector = null;
+let dictionaryWords = null;
+async function layoutAnalyze(text) {
+  if (!layoutDetector) layoutDetector = new GladkoLayout.Detector(GladkoLayoutData);
+  if (!dictionaryWords) {
+    const { dictionary } = await browser.storage.local.get({ dictionary: [] });
+    dictionaryWords = new Set(dictionary.map((w) => String(w).toLowerCase()));
+  }
+  return layoutDetector.analyze(String(text || "").slice(0, 100000), { ignore: dictionaryWords });
+}
+browser.storage.onChanged.addListener((ch) => { if (ch.dictionary) dictionaryWords = null; });
 
 // sendResponse + `return true` works in Chrome (promise-returning listeners do not) and in Firefox.
 browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (!msg || !["settings", "probeLocal", "check", "fixed", "openOptions"].includes(msg.type)) return false;
+  if (!msg || !["settings", "probeLocal", "check", "fixed", "openOptions", "layoutAnalyze", "layoutConvert"].includes(msg.type)) return false;
   handle(msg).then(sendResponse, (e) => sendResponse({ error: String(e && e.message || e) }));
   return true;
 });

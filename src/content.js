@@ -6,7 +6,7 @@
   const MIRROR_PROPS = ["fontFamily", "fontSize", "fontWeight", "fontStyle", "fontVariant", "fontStretch", "fontKerning", "fontFeatureSettings", "letterSpacing", "wordSpacing", "textTransform", "textIndent", "textAlign", "direction", "tabSize", "lineHeight", "whiteSpace", "overflowWrap", "wordBreak", "paddingLeft", "paddingRight", "paddingTop", "paddingBottom"];
 
   const tr = (k, ...a) => browser.i18n.getMessage(k, a.map(String)) || k;
-  let enabled = true, pausedUntil = 0, mutedSites = [];
+  let enabled = true, pausedUntil = 0, mutedSites = [], layoutMode = "off";
   const active = () => enabled && Date.now() >= pausedUntil && !mutedSites.includes(location.hostname);
   let target = null;      // focused field or contenteditable root
   let text = "";          // text of target as last seen
@@ -18,8 +18,9 @@
   const ignored = new Set();
   const cache = new Map();
 
-  browser.storage.local.get({ enabled: true, dictionary: [], pausedUntil: 0, mutedSites: [] }).then((s) => {
+  browser.storage.local.get({ enabled: true, dictionary: [], pausedUntil: 0, mutedSites: [], layoutMode: "off" }).then((s) => {
     enabled = s.enabled;
+    layoutMode = s.layoutMode;
     pausedUntil = s.pausedUntil;
     mutedSites = s.mutedSites;
     dictionary = new Set(s.dictionary);
@@ -28,6 +29,7 @@
     if (ch.enabled) enabled = ch.enabled.newValue;
     if (ch.pausedUntil) pausedUntil = ch.pausedUntil.newValue || 0;
     if (ch.mutedSites) mutedSites = ch.mutedSites.newValue || [];
+    if (ch.layoutMode) { layoutMode = ch.layoutMode.newValue || "off"; if (target) schedule(0); }
     if (!active()) detach();
     if (ch.dictionary) { dictionary = new Set(ch.dictionary.newValue || []); refilter(); }
   });
@@ -50,6 +52,7 @@
   }
   function kind(m) {
     const t = m.issueType;
+    if (t === "layout") return { cls: "gl-layout", label: tr("kindLayout") };
     if (t === "misspelling") return { cls: "gl-spell", label: tr("kindSpell") };
     if (t === "style" || t === "register" || t === "locale-violation") return { cls: "gl-style", label: tr("kindStyle") };
     if (t === "typographical" || t === "whitespace") return { cls: "gl-grammar", label: tr("kindPunct") };
@@ -209,6 +212,9 @@
     text = t;
     if (t.trim().length < 3) { matches = []; lastError = ""; closeCard(); redraw(); return; }
     const my = ++seq;
+    const layoutP = layoutMode === "suggest"
+      ? browser.runtime.sendMessage({ type: "layoutAnalyze", text: t.slice(0, MAX_CHARS) }).catch(() => [])
+      : Promise.resolve([]);
     let res = cache.get(t);
     if (!res) {
       busy = true;
@@ -219,6 +225,7 @@
         if (cache.size > 40) cache.delete(cache.keys().next().value);
       }
     }
+    const layoutFound = (await layoutP) || [];
     if (my !== seq || el !== target) return;
     busy = false;
     if (text !== t) { redraw(); return; } // typed while waiting; a newer check is already scheduled
@@ -228,10 +235,19 @@
       return;
     }
     lastError = "";
-    matches = res.matches.map((m) => Object.assign({}, m)).filter(visible);
+    matches = mergeLayout(res.matches, layoutFound).filter(visible);
     closeCard();
     if (panel) renderPanel();
     redraw();
+  }
+  // Wrong-layout findings become ordinary matches; server matches on the same words are dropped.
+  function mergeLayout(server, found) {
+    const lay = found.map((f) => ({
+      offset: f.offset, length: f.length, message: tr("layoutMsg"), shortMessage: "",
+      replacements: [f.replacement], issueType: "layout", category: "", ruleId: "GLADKO_LAYOUT",
+    }));
+    const overlaps = (m) => lay.some((l) => m.offset < l.offset + l.length && l.offset < m.offset + m.length);
+    return [...server.filter((m) => !overlaps(m)).map((m) => Object.assign({}, m)), ...lay].sort((a, b) => a.offset - b.offset);
   }
   function refilter() {
     matches = matches.filter(visible);
@@ -298,6 +314,7 @@
   }
 
   function openCard(m) {
+    hideChip();
     closeCard();
     closePanel();
     cardMatch = m;
@@ -491,11 +508,168 @@
     }
     if (msg.type === "command") {
       if (msg.name === "fix-all") fixAll();
+      else if (msg.name === "fix-layout") fixLayout();
       else if (msg.name === "next-issue") nextIssue();
     } else if (msg.type === "report") {
       showReport(msg.res);
     }
   });
+
+  // ---------- keyboard layout fix (ghbdtn -> привет) ----------
+  // Works on the focused field even when spell checking is off; conversion is local, detection is
+  // done by the background script with a bundled word list. Nothing leaves the browser.
+  const LAYOUT_CHUNK = /^(?:[A-Za-z`~[\]{};:'",.<>!?]+|[А-Яа-яЁё]+[.,!?:;]*)$/;
+  const CODE_EDITOR = ".cm-editor, .CodeMirror, .monaco-editor, .ace_editor";
+  let lastLayout = null; // { el, node, start, original, replacement, auto }
+  let layoutChip = null, chipTimer = 0;
+
+  function editableAt(node) {
+    const el = node && (node.nodeType === 1 ? node : node.parentElement);
+    if (!el) return null;
+    if (isField(el)) return isEditable(el) ? el : null;
+    return el.isContentEditable ? editRoot(el) : null;
+  }
+  // Caret context: for fields offsets are positions in el.value; for contenteditable they are
+  // positions inside the text node that holds the caret.
+  function caretContext() {
+    const a = document.activeElement;
+    if (a && isField(a)) {
+      if (!isEditable(a) || a.selectionStart == null) return null;
+      const s = a.selectionStart, e = a.selectionEnd;
+      return { el: a, field: true, before: a.value.slice(0, s), caret: s, selStart: s, selected: a.value.slice(s, e) };
+    }
+    const sel = getSelection();
+    if (!sel || !sel.rangeCount) return null;
+    const root = editableAt(sel.focusNode);
+    if (!root) return null;
+    if (!sel.isCollapsed) return { el: root, field: false, selected: sel.toString() };
+    const node = sel.focusNode;
+    if (node.nodeType !== Node.TEXT_NODE) return null;
+    return { el: root, field: false, node, before: node.data.slice(0, sel.focusOffset), caret: sel.focusOffset, selected: "" };
+  }
+  // Replace [start, end) before the caret, keeping the caret where it was relative to the text after.
+  function replaceAt(c, start, end, rep) {
+    if (c.field) {
+      const el = c.el, caret = el.selectionStart;
+      el.setSelectionRange(start, end);
+      if (!document.execCommand("insertText", false, rep)) {
+        el.setRangeText(rep, start, end, "end");
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      const pos = caret + rep.length - (end - start);
+      el.setSelectionRange(pos, pos);
+    } else {
+      const sel = getSelection(), r = document.createRange(), after = c.caret - end;
+      r.setStart(c.node, start);
+      r.setEnd(c.node, end);
+      sel.removeAllRanges();
+      sel.addRange(r);
+      document.execCommand("insertText", false, rep);
+      for (let i = 0; i < after; i++) sel.modify("move", "forward", "character");
+    }
+  }
+  const textAt = (c, start, len) => (c.field ? c.el.value : c.node.data).substr(start, len);
+
+  function revertLast(c, learn) {
+    const L = lastLayout;
+    if (!L || L.el !== c.el || (!c.field && L.node !== c.node)) return false;
+    if (textAt(c, L.start, L.replacement.length) !== L.replacement) return false;
+    replaceAt(c, L.start, L.start + L.replacement.length, L.original);
+    if (learn && L.auto) {
+      // the user wanted this word as typed: never change it again
+      dictionary.add(L.original.toLowerCase());
+      browser.storage.local.set({ dictionary: [...dictionary] });
+    }
+    lastLayout = null;
+    hideChip();
+    return true;
+  }
+
+  // Hotkey: undo the last change if the caret is right after it; else convert the selection or the
+  // last word before the caret.
+  const convertSmart = (s) =>
+    browser.runtime.sendMessage({ type: "layoutConvert", text: s }).then((r) => (typeof r === "string" ? r : GladkoLayout.convert(s)), () => GladkoLayout.convert(s));
+
+  async function fixLayout() {
+    if (layoutMode === "off" || !document.hasFocus()) return;
+    let c = caretContext();
+    if (!c) return;
+    if (!c.selected && revertLast(c, true)) return;
+    if (c.selected) {
+      const rep = await convertSmart(c.selected);
+      const now = caretContext();
+      if (!now || now.el !== c.el || now.selected !== c.selected) return; // selection changed meanwhile
+      if (c.field) {
+        const s = c.selStart;
+        c.el.setSelectionRange(s, s + c.selected.length);
+        if (!document.execCommand("insertText", false, rep)) c.el.setRangeText(rep, s, s + c.selected.length, "end");
+        c.el.setSelectionRange(s, s + rep.length);
+      } else {
+        document.execCommand("insertText", false, rep);
+      }
+      lastLayout = null;
+      return;
+    }
+    const m = c.before.match(/(\S+)(\s*)$/);
+    if (!m) return;
+    const start = c.before.length - m[0].length, rep = await convertSmart(m[1]);
+    if (rep === m[1]) return;
+    c = caretContext();
+    if (!c || c.selected || textAt(c, start, m[1].length) !== m[1]) return;
+    replaceAt(c, start, start + m[1].length, rep);
+    lastLayout = { el: c.el, node: c.node, start, original: m[1], replacement: rep, auto: false };
+  }
+
+  // Automatic mode: when a word is finished with a space (or Enter in a textarea), check it.
+  document.addEventListener("input", (e) => {
+    if (layoutMode !== "auto" || !active()) return;
+    const space = e.inputType === "insertText" && /^\s$/.test(e.data || "");
+    if (!space && e.inputType !== "insertLineBreak") return;
+    const c = caretContext();
+    if (!c || c.selected || (!c.field && !space) || c.el.closest(CODE_EDITOR)) return;
+    const m = c.before.match(/(\S+)(\s+)$/);
+    if (!m || !LAYOUT_CHUNK.test(m[1])) return;
+    const chunkStart = c.before.length - m[0].length;
+    const slice = c.before.slice(Math.max(0, chunkStart - 400), chunkStart + m[1].length);
+    const sliceChunk = slice.length - m[1].length;
+    browser.runtime.sendMessage({ type: "layoutAnalyze", text: slice }).then((found) => {
+      const hit = (found || []).filter((f) => f.offset >= sliceChunk).pop();
+      if (!hit) return;
+      const now = caretContext();
+      const start = chunkStart + (hit.offset - sliceChunk);
+      if (!now || now.el !== c.el || (!c.field && now.node !== c.node) || now.selected) return;
+      if (textAt(now, start, hit.length) !== hit.original) return; // text changed meanwhile
+      replaceAt(now, start, start + hit.length, hit.replacement);
+      lastLayout = { el: now.el, node: now.node, start, original: hit.original, replacement: hit.replacement, auto: true };
+      showChip(now.el, hit.original, hit.replacement);
+    }).catch(() => {});
+  }, true);
+
+  function hideChip() {
+    clearTimeout(chipTimer);
+    if (layoutChip) { layoutChip.remove(); layoutChip = null; }
+  }
+  function showChip(el, from, to) {
+    hideChip();
+    ensureHost();
+    const chip = mk("div", "gl-chip");
+    chip.addEventListener("mousedown", (e) => e.preventDefault());
+    chip.append(ic("swap"), mk("span", "gl-chip-from", from), mk("span", "gl-to", "→"), mk("span", "gl-chip-to", to));
+    const undo = mk("span", "gl-chip-undo", tr("layoutUndo"));
+    undo.addEventListener("click", () => {
+      const c = caretContext();
+      if (c) revertLast(c, true);
+      hideChip();
+    });
+    chip.append(undo);
+    host.append(chip);
+    const r = el.getBoundingClientRect();
+    const w = chip.offsetWidth, h = chip.offsetHeight;
+    chip.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + "px";
+    chip.style.top = (r.bottom + 6 + h < innerHeight ? r.bottom + 6 : Math.max(8, r.top - h - 6)) + "px";
+    layoutChip = chip;
+    chipTimer = setTimeout(hideChip, 5000);
+  }
 
   // ---------- lifecycle ----------
   const resizeObs = new ResizeObserver(redraw);
@@ -514,6 +688,7 @@
     schedule(cache.has(text) ? 0 : 400);
   }
   function detach() {
+    hideChip();
     clearTimeout(timer);
     seq++;
     resizeObs.disconnect();

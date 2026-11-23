@@ -38,6 +38,8 @@
     "scripts": [
       "polyfill.js",
       "lib.js",
+      "layout.js",
+      "layout-data.js",
       "background.js"
     ]
   },
@@ -49,6 +51,7 @@
       "js": [
         "polyfill.js",
         "icons.js",
+        "layout.js",
         "content.js"
       ],
       "css": [
@@ -88,6 +91,12 @@
         "default": "Alt+Shift+P"
       },
       "description": "__MSG_cmdTogglePause__"
+    },
+    "fix-layout": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "__MSG_cmdFixLayout__"
     }
   }
 }

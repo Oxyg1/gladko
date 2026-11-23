@@ -15,6 +15,8 @@
 
 **Что хранится локально (storage.local в вашем браузере).** Настройки, личный словарь, список сайтов с отключённой проверкой, время паузы и, если вы их ввели, e-mail и API-ключ Premium. Эти данные никуда не передаются, кроме API-ключа, который отправляется только серверу LanguageTool Premium вместе с проверяемым текстом.
 
+**Исправление раскладки** (если вы его включили) работает полностью внутри браузера по встроенному словарю: текст для этого никуда не отправляется.
+
 **Как отключить отправку.** Выключите расширение, отключите его на конкретном сайте или выберите локальный сервер в настройках.
 
 Контакт: oxygenio.max@gmail.com · Дата: 2026-11-08
@@ -29,6 +31,8 @@ Gladko checks spelling and grammar in text fields.
 **What we do not do.** The extension has no server of its own. We do not collect, store, sell or share your data, and there are no analytics, ads or remote code.
 
 **Stored locally (browser storage.local).** Settings, your personal dictionary, the list of sites where checking is disabled, pause time and, if you entered them, your Premium e-mail and API key. The API key is sent only to the LanguageTool Premium server together with the text being checked.
+
+**Keyboard layout fix** (if you enable it) runs entirely inside the browser using a bundled word list: no text is sent anywhere for it.
 
 **Opting out.** Disable the extension, disable it for a site, or choose the local server in settings.
 

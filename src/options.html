@@ -16,6 +16,7 @@
       <a href="#general"><i data-icon="power"></i><span data-i18n="secGeneral"></span></a>
       <a href="#server"><i data-icon="server"></i><span data-i18n="secServer"></span></a>
       <a href="#checking"><i data-icon="lang"></i><span data-i18n="secChecking"></span></a>
+      <a href="#layout"><i data-icon="swap"></i><span data-i18n="secLayout"></span></a>
       <a href="#sites"><i data-icon="globe"></i><span data-i18n="secSites"></span></a>
       <a href="#dictionary"><i data-icon="book"></i><span data-i18n="secDictionary"></span></a>
       <a href="#shortcuts"><i data-icon="keyboard"></i><span data-i18n="secShortcuts"></span></a>
@@ -126,6 +127,33 @@
           <span class="legend"><span class="ul grammar"></span><span data-i18n="kindGrammar"></span></span>
           <span class="legend"><span class="ul style"></span><span data-i18n="kindStyle"></span></span>
         </div>
+      </div>
+    </section>
+
+    <!-- Keyboard layout -->
+    <section id="layout" class="sec">
+      <header class="sec-head"><h2 data-i18n="secLayout"></h2><p class="muted" data-i18n="secLayoutSub"></p></header>
+      <div class="choices choices-4" role="radiogroup">
+        <label class="choice"><input type="radio" name="layoutMode" value="off"><span class="choice-body">
+          <i data-icon="power"></i><b data-i18n="layoutOff"></b><span class="muted small" data-i18n="layoutOffDesc"></span></span></label>
+        <label class="choice"><input type="radio" name="layoutMode" value="hotkey"><span class="choice-body">
+          <i data-icon="keyboard"></i><b data-i18n="layoutHotkey"></b><span class="muted small" data-i18n="layoutHotkeyDesc"></span></span></label>
+        <label class="choice"><input type="radio" name="layoutMode" value="suggest"><span class="choice-body">
+          <i data-icon="eye"></i><b data-i18n="layoutSuggest"></b><span class="muted small" data-i18n="layoutSuggestDesc"></span></span></label>
+        <label class="choice"><input type="radio" name="layoutMode" value="auto"><span class="choice-body">
+          <i data-icon="auto"></i><b data-i18n="layoutAuto"></b><span class="muted small" data-i18n="layoutAutoDesc"></span>
+          <span class="pill brand" data-i18n="badgeConvenient"></span></span></label>
+      </div>
+      <div class="card">
+        <div class="item">
+          <div class="item-text"><b data-i18n="layoutExampleTitle"></b><span class="muted small" data-i18n="layoutExample"></span></div>
+          <span class="swap-demo"><s>ghbdtn</s><i data-icon="arrow"></i><b>привет</b></span>
+        </div>
+        <div class="item">
+          <div class="item-text"><b data-i18n="cmdFixLayout"></b><span class="muted small" data-i18n="layoutKeyHint"></span></div>
+          <span class="keys" id="layout-keys"></span>
+        </div>
+        <div class="item"><span class="muted small"><i data-icon="shield"></i> <span data-i18n="layoutPrivacy"></span></span></div>
       </div>
     </section>
 

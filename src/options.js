@@ -32,6 +32,7 @@ async function render() {
   $("#st-total").textContent = Gl.num(st.totalFixes);
 
   for (const r of $$('input[name="server"]')) r.checked = r.value === s.server;
+  for (const r of $$('input[name="layoutMode"]')) r.checked = r.value === s.layoutMode;
   $("#premium-box").hidden = s.server !== "premium";
   $("#custom-box").hidden = s.server !== "custom";
   if (document.activeElement !== $("#endpoint")) $("#endpoint").value = s.endpoint;
@@ -136,6 +137,11 @@ $("#copy-docker").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText($("#docker-cmd").textContent); toast(t("copied")); } catch (e) { /* clipboard blocked */ }
 });
 
+// ---------- keyboard layout ----------
+for (const r of $$('input[name="layoutMode"]')) {
+  r.addEventListener("change", async () => { await set({ layoutMode: r.value }); saved(); });
+}
+
 // ---------- checking ----------
 $("#language").addEventListener("change", async (e) => { await set({ language: e.target.value }); saved(); });
 $("#picky").addEventListener("change", async (e) => { await set({ picky: e.target.checked }); saved(); });
@@ -193,6 +199,12 @@ async function renderCommands() {
   const ul = $("#commands");
   ul.replaceChildren();
   const cmds = browser.commands && browser.commands.getAll ? await browser.commands.getAll() : [];
+  const lk = $("#layout-keys");
+  const layoutCmd = cmds.find((c) => c.name === "fix-layout");
+  lk.replaceChildren();
+  if (layoutCmd && layoutCmd.shortcut) {
+    for (const k of layoutCmd.shortcut.split("+")) { const kbd = document.createElement("kbd"); kbd.textContent = k; lk.append(kbd); }
+  } else { lk.className = "muted small"; lk.textContent = t("notSet"); }
   for (const c of cmds) {
     if (!c.description) continue;
     const li = document.createElement("li");

@@ -7,7 +7,7 @@
 **🇷🇺 Русский** · [🇬🇧 English](README.en.md)
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
-[![Версия](https://img.shields.io/badge/версия-0.7.0-126067)](CHANGELOG.md)
+[![Версия](https://img.shields.io/badge/версия-0.8.0-126067)](CHANGELOG.md)
 [![Лицензия: MIT](https://img.shields.io/badge/лицензия-MIT-126067)](LICENSE)
 [![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-установить-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/ru/firefox/addon/gladko-grammar-check/)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
@@ -35,6 +35,7 @@
 | 🎯 **Под контролем** | пауза, отключение на выбранных сайтах, строгий режим, проверка выделенного текста из контекстного меню |
 | 📚 **Личный словарь** | импорт и экспорт в текстовый файл |
 | 🔒 **Приватность** | никакой аналитики и собственных серверов; локальный режим — текст остаётся на вашем компьютере |
+| ⌨️ **Не та раскладка** | «ghbdtn» → «привет» по Alt+Shift+L, подсказкой или сразу после пробела (с отменой); работает локально, включается в настройках |
 | 🎛️ **Удобное меню** | быстрые настройки по клику на значок, индикатор паузы и выключения на кнопке, статистика исправлений |
 | 🌍 **Интерфейс** | русский и английский, светлая и тёмная тема |
 

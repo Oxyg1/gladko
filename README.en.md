@@ -7,7 +7,7 @@
 [🇷🇺 Русский](README.md) · **🇬🇧 English**
 
 [![CI](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml/badge.svg)](https://github.com/Oxyg1/gladko/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-0.7.0-126067)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.8.0-126067)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-126067)](LICENSE)
 [![Firefox Add-ons](https://img.shields.io/badge/Firefox_Add--ons-install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/gladko-grammar-check/)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
@@ -31,6 +31,7 @@
 | ⌨️ **Hotkeys** | <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> fix all · <kbd>N</kbd> next issue · <kbd>P</kbd> pause for an hour |
 | 🎯 **In your control** | pause, per-site disable, picky mode, check selected text from the context menu |
 | 📚 **Personal dictionary** | import and export as a text file |
+| ⌨️ **Wrong keyboard layout** | “руддщ” → “hello” with Alt+Shift+L, as a suggestion, or right after space (with undo); runs locally, opt-in |
 | 🔒 **Privacy** | no analytics, no servers of our own; local mode keeps text on your machine |
 | 🌍 **UI languages** | Russian and English |
 

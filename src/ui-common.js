@@ -2,7 +2,7 @@
 const Gl = (() => {
   const DEFAULTS = {
     server: "auto", endpoint: "", language: "auto", enabled: true, picky: false,
-    username: "", apiKey: "", pausedUntil: 0, mutedSites: [], dictionary: [],
+    username: "", apiKey: "", pausedUntil: 0, mutedSites: [], dictionary: [], layoutMode: "off",
     stats: { day: "", checks: 0, fixes: 0, totalFixes: 0 },
   };
   const LANGUAGES = [

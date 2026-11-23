@@ -80,6 +80,7 @@ try {
   console.log("ok: fix all →", JSON.stringify(fixed));
 
   // next-issue hotkey path + context-menu report path (messages the background sends to the tab)
+  await p.bringToFront(); // the welcome page opened on install may have taken focus
   await p.fill("#t", "Ещё Превет и исправленя.");
   await p.waitForFunction(() => document.querySelectorAll(".gl-mark").length >= 2, null, { timeout: 15000 });
   await p.evaluate(() => document.getElementById("t").setSelectionRange(0, 0));
@@ -96,6 +97,58 @@ try {
   });
   await p.waitForSelector(".gl-panel .gl-item", { timeout: 5000 });
   console.log("ok: selection report is shown");
+
+  // ---- wrong keyboard layout ----
+  const setMode = (mode) => sw.evaluate((m) => chrome.storage.local.set({ layoutMode: m }), mode);
+  const sendCmd = (name) => sw.evaluate(async (n) => {
+    const [tab] = await chrome.tabs.query({ url: "http://127.0.0.1:8081/*" });
+    await chrome.tabs.sendMessage(tab.id, { type: "command", name: n });
+  }, name);
+  await p.bringToFront();
+
+  // auto: fixed after space, undo button reverts and remembers the word
+  await setMode("auto");
+  await p.fill("#t", "");
+  await p.click("#t");
+  await p.keyboard.type("ghbdtn ", { delay: 20 });
+  await p.waitForFunction(() => document.getElementById("t").value === "привет ", null, { timeout: 5000 });
+  await p.waitForSelector(".gl-chip");
+  await p.keyboard.type("vbh", { delay: 20 });
+  assert.equal(await p.inputValue("#t"), "привет vbh", "caret stays after the fixed word");
+  await p.click(".gl-chip-undo");
+  assert.equal(await p.inputValue("#t"), "ghbdtn vbh", "undo restores the original word");
+  const dict = await sw.evaluate(async () => (await chrome.storage.local.get("dictionary")).dictionary);
+  assert.ok(dict.includes("ghbdtn"), "undone word is remembered");
+  console.log("ok: layout auto mode fixes after space, undo reverts and remembers");
+
+  // hotkey: last word, again to undo, then a selection with punctuation
+  await setMode("hotkey");
+  await p.fill("#t", "");
+  await p.click("#t");
+  await p.keyboard.type("Ye vbh", { delay: 10 });
+  await sendCmd("fix-layout");
+  await p.waitForFunction(() => document.getElementById("t").value === "Ye мир", null, { timeout: 5000 });
+  await sendCmd("fix-layout");
+  await p.waitForFunction(() => document.getElementById("t").value === "Ye vbh", null, { timeout: 5000 });
+  await p.fill("#t", "Ghbdtn, vbh!");
+  await p.evaluate(() => document.getElementById("t").select());
+  await sendCmd("fix-layout");
+  await p.waitForFunction(() => document.getElementById("t").value === "Привет, мир!", null, { timeout: 5000 });
+  console.log("ok: layout hotkey converts the last word, toggles back, and converts a selection");
+
+  // suggest: dashed underline and one-click fix
+  await setMode("suggest");
+  await p.fill("#t", "");
+  await p.click("#t");
+  await p.keyboard.type("Сегодня ntrcn всем", { delay: 5 });
+  await p.waitForSelector(".gl-mark.gl-layout", { timeout: 15000 });
+  const lm = await p.$eval(".gl-mark.gl-layout", (e) => { const r = e.getBoundingClientRect(); return [r.x + r.width / 2, r.y + r.height / 2]; });
+  await p.mouse.click(lm[0], lm[1]);
+  await p.waitForSelector(".gl-card.gl-layout");
+  await p.click(".gl-card .gl-sug.gl-main");
+  assert.equal(await p.inputValue("#t"), "Сегодня текст всем");
+  console.log("ok: layout suggest mode underlines and fixes in one click");
+  await setMode("off");
 
   // options page loads with localized strings
   const o = await ctx.newPage();
